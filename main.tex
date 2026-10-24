@@ -1,1 +1,308 @@
- 
+%======================================================================
+%  PREAMBLE -- Introduction to Programming
+%  Compile with XeLaTeX or LuaLaTeX (fontspec + unicode-math).
+%  pdfLaTeX will NOT work: see notes at end of file.
+%======================================================================
+\documentclass[a4paper,12pt,twoside]{book}
+
+%----------------------------------------------------------------------
+%  1. Fonts  (must be first among user packages)
+%----------------------------------------------------------------------
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{DejaVu Sans Mono}[Scale=0.82]
+
+%----------------------------------------------------------------------
+%  2. Language (babel AFTER fontspec)
+%----------------------------------------------------------------------
+\usepackage[bidi=default]{babel}
+\babelprovide[import]{english}
+
+%----------------------------------------------------------------------
+%  3. Geometry
+%     marginpar reserved so \marginnote has somewhere to live.
+%----------------------------------------------------------------------
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  inner          = 25mm,   % spine side -- narrower
+  outer          = 45mm,   % edge side -- wider, fits marginpar
+  top            = 28mm,
+  bottom         = 29mm,
+  marginparwidth = 35mm,
+  marginparsep   = 5mm,
+  heightrounded,
+}
+
+%----------------------------------------------------------------------
+%  4. Mathematics
+%     amssymb is REMOVED -- it collides with unicode-math on \eth.
+%     unicode-math supplies the full AMS symbol set.
+%     physics has mild friction with unicode-math (\Im, \div);
+%     it is loaded AFTER unicode-math, which is the safe order.
+%----------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{physics}
+% \usepackage{amssymb}   % <-- do NOT load; conflicts with unicode-math
+
+%----------------------------------------------------------------------
+%  5. Graphics
+%----------------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{
+  shapes.geometric,  % diamond, ellipse, trapezium
+  arrows.meta,       % Stealth tips
+  positioning,       % below=of / right=of
+  calc,              % midpoint interpolation for merge points
+  fit, backgrounds, shadows.blur
+}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18, width=0.85\linewidth, height=6cm}
+
+% Node styles (same names as your existing figures -> no edits needed)
+\tikzset{
+  startstop/.style = {ellipse, draw=teal!70!black, fill=teal!12, thick,
+                      minimum width=2.8cm, minimum height=0.9cm,
+                      font=\bfseries, align=center},
+  io/.style        = {trapezium, trapezium left angle=70,
+                      trapezium right angle=110,
+                      draw=blue!55!black, fill=blue!10, thick,
+                      minimum width=2.8cm, minimum height=0.9cm,
+                      align=center},
+  process/.style   = {rectangle, rounded corners=3pt,
+                      draw=violet!55!black, fill=violet!10, thick,
+                      minimum width=3cm, minimum height=0.9cm,
+                      align=center},
+  decision/.style  = {diamond, aspect=2.2, draw=orange!75!black,
+                      fill=orange!15, thick, inner sep=1pt, align=center},
+  arrow/.style     = {-{Stealth[length=2.5mm]}, thick, draw=black!75},
+}
+
+%----------------------------------------------------------------------
+%  6. Code listings  (source vs. output distinguished by style)
+%----------------------------------------------------------------------
+\usepackage{listings}
+\usepackage{upquote}   % provides upquote=true key
+\usepackage{xcolor}
+
+\definecolor{codebg}  {HTML}{F6F8FA}
+\definecolor{codekw}  {HTML}{005CC5}
+\definecolor{codestr} {HTML}{032F62}
+\definecolor{codecom} {HTML}{6A737D}
+\definecolor{codenum} {HTML}{B0B7C0}
+
+\lstdefinestyle{book}{
+  language        = Python,
+  backgroundcolor = \color{codebg},
+  basicstyle      = \ttfamily\small,
+  keywordstyle    = \color{codekw}\bfseries,
+  stringstyle     = \color{codestr},
+  commentstyle    = \color{codecom}\itshape,
+  numberstyle     = \tiny\color{codenum},
+  numbers         = left,
+  numbersep       = 8pt,
+  frame           = single,
+  rulecolor       = \color{codenum},
+  breaklines      = true,
+  postbreak       = \mbox{\textcolor{codenum}{$\hookrightarrow$}\space},
+  showstringspaces= false,
+  keepspaces      = true,
+  tabsize         = 2,
+  upquote         = true,
+  captionpos      = b,
+  xleftmargin     = 10pt,
+  aboveskip       = 8pt,
+  belowskip       = 8pt,
+}
+\lstdefinestyle{output}{
+  backgroundcolor = \color{black!4},
+  basicstyle      = \ttfamily\small,
+  numbers         = none,
+  frame           = leftline,
+  rulecolor       = \color{black!45},
+  xleftmargin     = 8pt,
+  showstringspaces= false,
+  upquote         = true,
+}
+\lstset{style=book}
+
+\newcommand{\code}[1]{%
+  \lstinline[style=book, numbers=none, frame=none,
+             backgroundcolor=\color{codebg}]#1}
+
+%----------------------------------------------------------------------
+%  7. Callout boxes
+%----------------------------------------------------------------------
+\usepackage[most]{tcolorbox}
+\tcbset{boxrule=0.4pt, arc=2pt, left=6pt, right=6pt,
+        top=4pt, bottom=4pt, fonttitle=\bfseries\small,
+        colbacktitle=white}
+\newtcolorbox{notebox}[1][]{colback=blue!5,  colframe=blue!45!black,
+                            title={Note}, #1}
+\newtcolorbox{warnbox}[1][]{colback=red!4,   colframe=red!55!black,
+                            title={Common mistake}, #1}
+\newtcolorbox{tryitbox}[1][]{colback=green!4, colframe=green!40!black,
+                             title={Try it yourself}, #1}
+
+%----------------------------------------------------------------------
+%  8. Tables, lists, spacing
+%----------------------------------------------------------------------
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\setlist[itemize]{
+  noitemsep, topsep=0pt, partopsep=0pt, parsep=0pt, leftmargin=*}
+\setlist[enumerate]{
+  noitemsep, topsep=0pt, partopsep=0pt, parsep=0pt, leftmargin=*}
+
+\usepackage{setspace}
+\singlespacing
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}   % remove for indented paragraphs
+
+%----------------------------------------------------------------------
+%  9. Headers, footers, chapter titles
+%----------------------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\textit{Introduction to Programming}}
+\fancyhead[LO]{\textit{Habibullah Basar}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\centering}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+%----------------------------------------------------------------------
+% 10. Margin notes
+%----------------------------------------------------------------------
+\usepackage{marginnote}
+
+%----------------------------------------------------------------------
+% 11. Captions
+%----------------------------------------------------------------------
+\usepackage[font=small, labelfont=bf, justification=raggedright,
+            singlelinecheck=false]{caption}
+
+%----------------------------------------------------------------------
+% 12. Hyperlinks + smart cross-references (hyperref, then cleveref)
+%----------------------------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+  unicode        = true,
+  colorlinks     = true,
+  linkcolor      = blue!55!black,
+  citecolor      = blue!55!black,
+  urlcolor       = magenta!60!black,
+  bookmarksnumbered = true,
+  pdfstartview   = FitH,
+  pdftitle       = {Introduction to Programming},
+  pdfauthor      = {Habibullah Basar},
+}
+\usepackage{cleveref}
+\crefname{lstlisting}{Listing}{Listings}
+\Crefname{lstlisting}{Listing}{Listings}
+
+%----------------------------------------------------------------------
+% 13. Custom environments (robust blank-argument test via etoolbox)
+%----------------------------------------------------------------------
+\usepackage{etoolbox}
+
+\newenvironment{definition}[1][]{%
+  \par\medskip
+  \noindent\textbf{Definition\ifblank{#1}{}{: #1}}\par\nopagebreak
+  \begin{quote}%
+}{%
+  \end{quote}\par\medskip
+}
+
+\newenvironment{exercise}[1][]{%
+  \par\medskip
+  \noindent\textbf{Exercise\ifblank{#1}{}{: #1}}\par\nopagebreak
+  \begin{quote}%
+}{%
+  \end{quote}\par\medskip
+}
+
+%----------------------------------------------------------------------
+% 14. LTR guard (no-op in LTR docs; isolates content in RTL)
+%----------------------------------------------------------------------
+\ifdefined\LTR
+  \newenvironment{ltrblock}{\begin{LTR}}{\end{LTR}}
+\else
+  \newenvironment{ltrblock}{}{}
+\fi
+
+%----------------------------------------------------------------------
+% 15. Document metadata
+%----------------------------------------------------------------------
+\title{\textbf{Introduction to Programming}}
+\author{Habibullah Basar \\ \small{habibullahbashar0@gmail.com}}
+\date{January 6, 2026}
+
+%======================================================================
+\begin{document}
+
+%----------------------------------------------------------------------
+%  FRONT MATTER  (roman page numbers: i, ii, iii, ...)
+%----------------------------------------------------------------------
+\frontmatter
+
+\maketitle
+\tableofcontents
+
+\input{chapters/00_preface}
+
+%----------------------------------------------------------------------
+%  MAIN MATTER  (arabic page numbers restart at 1)
+%----------------------------------------------------------------------
+\mainmatter
+
+\part{Foundations}
+
+\input{chapters/01_programming}      % ch. 1
+\input{chapters/02_variables}        % ch. 2
+\input{chapters/03_algorithms}       % ch. 3
+
+\part{First Steps in Programming (Python Begins)}
+
+\input{chapters/04_first_program}    % ch. 4
+\input{chapters/05_python_variables} % ch. 5
+\input{chapters/06_input}            % ch. 6
+\input{chapters/08_decisions}        % ch. 7  (file 08, chapter 7)
+\input{chapters/09_loops}            % ch. 8  (file 09, chapter 8)
+\input{chapters/12_functions}        % ch. 9  (file 12, chapter 9)
+\input{chapters/11_lists}            % ch. 10a
+\input{chapters/14_strings}          % ch. 10b
+\input{chapters/16_dictionaries}     % ch. 11
+\input{chapters/42_file_handling_memory} % ch. 12
+\input{chapters/44_modules}          % ch. 13
+\input{chapters/45_gui_basics}       % ch. 14
+\input{chapters/46_school_management}% ch. 15
+
+%----------------------------------------------------------------------
+%  APPENDICES
+%----------------------------------------------------------------------
+\appendix
+\input{chapters/99_teachers_guide}
+\input{chapters/100_lab_manual}
+
+%----------------------------------------------------------------------
+%  BACK MATTER
+%----------------------------------------------------------------------
+\backmatter
+
+\chapter*{About the Author}
+\addcontentsline{toc}{chapter}{About the Author}
+
+Habibullah Basar is an educator passionate about making programming simple,
+practical, and meaningful for high school students.
+
+\end{document}
