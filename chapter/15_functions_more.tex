@@ -1,0 +1,179 @@
+\chapter{More on Functions in Python: Parameters, Return Values, and Scope}
+
+\section{Introduction: Real-Life Hook}
+
+Think about daily routines:
+
+\begin{itemize}
+    \item Making tea: you can vary sugar or milk each time  
+    \item Calculating exam scores for different subjects  
+    \item Sending personalized greetings to friends  
+\end{itemize}
+
+In Python, \textbf{functions can take inputs (parameters)}, \textbf{return outputs}, and have \textbf{local vs global variables} to make programs flexible and reusable.
+
+\section{Concept: Function Parameters and Arguments}
+
+\begin{definition}{Function Parameter}
+A \textbf{parameter} is a variable listed in a function definition to receive input when the function is called.
+\end{definition}
+
+\subsection{Example: Personalized Greeting}
+
+\begin{verbatim}
+def greet(name):
+    print("Hello,", name)
+
+greet("Amina")
+greet("Rafi")
+\end{verbatim}
+
+- \texttt{name} is the \textbf{parameter}  
+- \texttt{"Amina"} and \texttt{"Rafi"} are \textbf{arguments}
+
+\section{Default Parameters}
+
+\begin{verbatim}
+def greet(name="Friend"):
+    print("Hello,", name)
+
+greet()         # Hello, Friend
+greet("Amina")  # Hello, Amina
+\end{verbatim}
+
+- Functions can have default values if arguments are not provided
+
+\section{Return Values}
+
+\begin{verbatim}
+def add(a, b):
+    return a + b
+
+result = add(5, 3)
+print("Sum is:", result)
+\end{verbatim}
+
+- \texttt{return} sends a value back to the caller  
+- Returned values can be stored, printed, or used in calculations
+
+\section{Variable Scope: Local vs Global}
+
+\begin{verbatim}
+x = 10  # global variable
+
+def change_x():
+    x = 5  # local variable
+    print("Inside function:", x)
+
+change_x()        # Inside function: 5
+print("Outside function:", x)  # 10
+\end{verbatim}
+
+- Variables inside a function are \textbf{local}  
+- Variables outside are \textbf{global}  
+- Understanding scope prevents accidental errors
+
+\section{Docstrings: Documenting Functions}
+
+\begin{verbatim}
+def add(a, b):
+    """Returns the sum of a and b"""
+    return a + b
+
+print(add.__doc__)
+\end{verbatim}
+
+- Docstrings describe what a function does  
+- Helpful for readability and teaching others
+
+\section{Mini-Project: Temperature Converter}
+
+Create a program with a function to convert Celsius to Fahrenheit:
+
+\begin{verbatim}
+def celsius_to_fahrenheit(c):
+    """Converts Celsius to Fahrenheit"""
+    return (c * 9/5) + 32
+
+temp_c = float(input("Enter temperature in Celsius: "))
+print("Temperature in Fahrenheit:", celsius_to_fahrenheit(temp_c))
+\end{verbatim}
+
+\section{Step-by-Step Diagram: Function with Parameters and Return Values}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (define) [draw, rectangle, fill=yellow!20, below of=start] {Define Function with Parameters};
+\node (call) [draw, rectangle, fill=orange!20, below of=define] {Call Function with Arguments};
+\node (execute) [draw, rectangle, fill=orange!20, below of=call] {Execute Function Body};
+\node (return) [draw, rectangle, fill=yellow!20, below of=execute] {Return Value};
+\node (use) [draw, rectangle, fill=orange!20, below of=return] {Use Value in Program};
+\node (end) [draw, ellipse, fill=green!20, below of=use] {End Program};
+\draw[->] (start) -- (define);
+\draw[->] (define) -- (call);
+\draw[->] (call) -- (execute);
+\draw[->] (execute) -- (return);
+\draw[->] (return) -- (use);
+\draw[->] (use) -- (end);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Functions can take \textbf{parameters} and receive \textbf{arguments}  
+    \item Functions can \textbf{return values} to be used elsewhere  
+    \item \textbf{Local vs global variables}: scope matters  
+    \item \textbf{Docstrings} document what a function does for readability  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is a function parameter?  
+    \item How do you return a value from a function?  
+    \item What is the difference between local and global variables?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write a function that takes two numbers and returns their difference.  
+    \item Explain why function docstrings are useful.  
+    \item What happens if you change a global variable inside a function without the global keyword?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a program with a function to convert kilometers to miles and test it with user input.  
+    \item Write a function that takes a list of numbers and returns the maximum value.  
+    \item Make a program that uses a function to greet a user with their name and age. Include a docstring.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students understand parameters, arguments, return values, and variable scope  
+    \item Students can create reusable and documented functions  
+    \item Students can organize programs efficiently  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Start with simple functions and gradually introduce parameters and return values  
+    \item Demonstrate local vs global variables using clear examples  
+    \item Encourage writing docstrings for all functions  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correctness of functions with parameters and return values  
+    \item Observe understanding of scope and docstrings  
+\end{itemize}
+}

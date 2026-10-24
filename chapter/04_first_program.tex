@@ -1,0 +1,146 @@
+\chapter{Your First Program: Talking to the Computer}
+
+\section{Introduction: Real-Life Hook}
+
+Students already “talk” to computers without thinking of it as programming:  
+
+\begin{itemize}
+    \item Chat apps: sending messages to friends  
+    \item Voice assistants: asking Google or Siri for the weather  
+    \item Smart devices: telling Alexa to play music  
+\end{itemize}
+
+In all these cases, the computer responds to instructions. Programming is just giving instructions in a language the computer understands.
+
+\section{Concept: What Is a Program?}
+
+\begin{definition}{Program}
+A \textbf{program} is a set of instructions that tells the computer what to do.  
+Every app, game, or website is controlled by programs.
+\end{definition}
+
+\subsection{Talking to the Computer}
+
+Python allows us to write programs that “talk” to the computer.  
+The simplest interaction is showing messages on the screen.
+
+\begin{definition}{Print Statement}
+\texttt{print()} is a Python command that displays messages to the user.
+\end{definition}
+
+\subsection{Example: Print a Message}
+
+\begin{verbatim}
+print("Hello, world!")
+\end{verbatim}
+
+Output on screen:
+
+\begin{verbatim}
+Hello, world!
+\end{verbatim}
+
+\section{Comments: Talking to Humans, Not Computers}
+
+Sometimes programmers write notes inside programs to explain the code.  
+These are called \textbf{comments}.
+
+\begin{verbatim}
+# This program prints a greeting
+print("Hello, world!")
+\end{verbatim}
+
+The computer ignores comments—they are only for humans.
+
+\section{Diagram: How Your First Program Works}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (instructions) [draw, rectangle, fill=yellow!20, below of=start] {Execute Instructions};
+\node (print) [draw, rectangle, fill=orange!20, below of=instructions] {Display Message with print()};
+\node (end) [draw, ellipse, fill=green!20, below of=print] {End Program};
+\draw[->] (start) -- (instructions);
+\draw[->] (instructions) -- (print);
+\draw[->] (print) -- (end);
+\end{tikzpicture}
+\end{center}
+
+\section{Project: Introduce Yourself}
+
+Write a Python program that prints your name, age, and favorite hobby.  
+
+\begin{verbatim}
+# My first introduction program
+print("Hello! My name is Amina.")
+print("I am 15 years old.")
+print("My favorite hobby is painting.")
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+Hello! My name is Amina.
+I am 15 years old.
+My favorite hobby is painting.
+\end{verbatim}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item A program is a set of instructions.
+    \item Computers follow instructions exactly.
+    \item \texttt{print()} displays messages to users.
+    \item Comments (\#) are ignored by the computer and used to explain code.
+    \item Python is an easy first language for learning programming.
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is a program?
+    \item What does \texttt{print()} do in Python?
+    \item Why do we use comments in a program?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write a Python statement to print your favorite food.
+    \item Why is Python suitable for beginners?
+    \item Explain the difference between code and comments.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a program that introduces your best friend.
+    \item Modify your introduction program to include your favorite subject and sport.
+    \item Ask a classmate to run your program and observe the output.
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:} 
+\begin{itemize}
+    \item Students understand what a program is.
+    \item Students learn to display messages using Python.
+    \item Students understand the role of comments.
+\end{itemize}
+
+\textbf{Teaching Tips:} 
+\begin{itemize}
+    \item Use chat apps and voice assistants as hooks.
+    \item Demonstrate print() statements live.
+    \item Encourage students to modify messages for fun.
+\end{itemize}
+
+\textbf{Assessment:} 
+\begin{itemize}
+    \item Check if students’ programs run correctly.
+    \item Observe understanding of comments and messages.
+\end{itemize}
+}

@@ -1,0 +1,167 @@
+\chapter{Algorithms Without Computers}
+
+\section{Introduction}
+
+An \textbf{algorithm} is a series of steps to solve a problem.  
+You do not need a computer to use algorithms—everyday tasks follow algorithms.  
+
+Understanding algorithms helps students think logically and solve problems efficiently.
+
+\section{Real-Life Student Problem: Making Tea}
+
+\subsection{Case Study: Rafi’s Morning Tea}
+
+Rafi wants to make a cup of tea. If he does not follow the steps carefully, the tea may be too weak or too strong, or the sugar may spill.  
+
+\begin{definition}{Algorithm}
+An \textbf{algorithm} is a sequence of instructions that solve a problem or complete a task.
+\end{definition}
+
+\subsection{Step-by-Step Instructions for Tea}
+
+\begin{enumerate}
+    \item Boil water in a kettle.
+    \item Place tea leaves or tea bag into a cup.
+    \item Pour hot water into the cup.
+    \item Add sugar and milk (optional).
+    \item Stir and serve.
+\end{enumerate}
+
+Following these steps ensures a perfect cup of tea every time.  
+
+\section{Diagram: Tea-Making Algorithm}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start};
+\node (boil) [draw, rectangle, fill=yellow!20, below of=start] {Boil Water};
+\node (tea) [draw, rectangle, fill=orange!20, below of=boil] {Add Tea Leaves};
+\node (pour) [draw, rectangle, fill=orange!20, below of=tea] {Pour Hot Water};
+\node (sugar) [draw, rectangle, fill=yellow!20, below of=pour] {Add Sugar/Milk};
+\node (stir) [draw, rectangle, fill=yellow!20, below of=sugar] {Stir};
+\node (serve) [draw, ellipse, fill=green!20, below of=stir] {Serve};
+\draw[->] (start) -- (boil);
+\draw[->] (boil) -- (tea);
+\draw[->] (tea) -- (pour);
+\draw[->] (pour) -- (sugar);
+\draw[->] (sugar) -- (stir);
+\draw[->] (stir) -- (serve);
+\end{tikzpicture}
+\end{center}
+
+\section{Algorithms for Daily Life}
+
+Students use algorithms every day, often without realizing it:
+
+\begin{itemize}
+    \item Getting ready for school
+    \item Packing a bag
+    \item Following a recipe
+    \item Solving a math problem step-by-step
+\end{itemize}
+
+\subsection{Observation}
+
+Algorithms help reduce mistakes, save time, and make tasks predictable.
+
+\section{Algorithm Characteristics}
+
+\begin{itemize}
+    \item \textbf{Definiteness:} Each step is clear.
+    \item \textbf{Input:} What information is required.
+    \item \textbf{Output:} The result of completing the steps.
+    \item \textbf{Finiteness:} The algorithm ends after a finite number of steps.
+\end{itemize}
+
+\section{Algorithm Example: Packing a School Bag}
+
+\begin{enumerate}
+    \item Check timetable.
+    \item Collect books for today’s subjects.
+    \item Collect homework notebooks.
+    \item Pack stationery.
+    \item Pack water bottle and lunch.
+    \item Close the bag and carry to school.
+\end{enumerate}
+
+\begin{definition}{Daily Life Algorithm}
+Any routine task can be written as an algorithm using steps that anyone can follow.
+\end{definition}
+
+\section{Step-by-Step Diagram: Packing Bag}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start};
+\node (timetable) [draw, rectangle, fill=yellow!20, below of=start] {Check Timetable};
+\node (books) [draw, rectangle, fill=orange!20, below of=timetable] {Collect Books};
+\node (homework) [draw, rectangle, fill=orange!20, below of=books] {Collect Homework};
+\node (stationery) [draw, rectangle, fill=yellow!20, below of=homework] {Pack Stationery};
+\node (lunch) [draw, rectangle, fill=yellow!20, below of=stationery] {Pack Lunch \& Water};
+\node (done) [draw, ellipse, fill=green!20, below of=lunch] {Done};
+\draw[->] (start) -- (timetable);
+\draw[->] (timetable) -- (books);
+\draw[->] (books) -- (homework);
+\draw[->] (homework) -- (stationery);
+\draw[->] (stationery) -- (lunch);
+\draw[->] (lunch) -- (done);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item An algorithm is a set of instructions to solve a problem.
+    \item Algorithms are part of everyday life.
+    \item Algorithms must be definite, finite, and produce a result.
+    \item Writing steps clearly reduces mistakes.
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is an algorithm?
+    \item Give two examples of algorithms in daily life.
+    \item What is meant by definiteness in an algorithm?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write the algorithm for brushing teeth.
+    \item Explain why packing a school bag is an algorithm.
+    \item How does following an algorithm reduce mistakes?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create an algorithm for making your favorite sandwich.
+    \item Observe a classmate performing a routine task and write an algorithm for it.
+    \item Identify input, process, and output for a daily task at home.
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:} 
+\begin{itemize}
+    \item Students understand what an algorithm is and how it applies to real life.
+    \item Students can write step-by-step instructions for daily tasks.
+    \item Students recognize input, process, and output in everyday algorithms.
+\end{itemize}
+
+\textbf{Teaching Tips:} 
+\begin{itemize}
+    \item Demonstrate a real-life task in class and write steps together.
+    \item Encourage students to identify steps for complex daily routines.
+\end{itemize}
+
+\textbf{Assessment:} 
+\begin{itemize}
+    \item Ask students to write their own daily-life algorithms.
+    \item Check clarity and completeness of steps.
+\end{itemize}
+}

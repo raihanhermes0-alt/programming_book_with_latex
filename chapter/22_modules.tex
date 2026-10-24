@@ -1,0 +1,209 @@
+\chapter{Advanced File Handling: CSV and JSON in Python}
+
+\section{Introduction: Real-Life Hook}
+
+Students deal with data every day:  
+
+\begin{itemize}
+    \item Exam marks stored in spreadsheets  
+    \item Contact lists saved in apps  
+    \item Online data (like weather, scores) in JSON format  
+\end{itemize}
+
+Python allows us to \textbf{read, write, and manipulate structured data} using \textbf{CSV and JSON files}, making programs more useful in real life.
+
+\section{Concept: What is CSV?}
+
+\begin{definition}{CSV (Comma-Separated Values)}
+A CSV file stores \textbf{tabular data} (like Excel sheets) in plain text, where each value is separated by a comma.
+\end{definition}
+
+\subsection{Reading a CSV File}
+
+\begin{verbatim}
+import csv
+
+with open("marks.csv", "r") as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
+\end{verbatim}
+
+- Each \texttt{row} is a list of values  
+- Use \texttt{csv.DictReader} to read rows as dictionaries:
+
+\begin{verbatim}
+with open("marks.csv", "r") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        print(row["Name"], row["Math"], row["Science"])
+\end{verbatim}
+
+\subsection{Writing to a CSV File}
+
+\begin{verbatim}
+import csv
+
+data = [
+    ["Name", "Math", "Science"],
+    ["Amina", 80, 90],
+    ["Rafi", 75, 85]
+]
+
+with open("marks.csv", "w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerows(data)
+\end{verbatim}
+
+- \texttt{writerows()} writes multiple rows at once  
+- \texttt{newline=""} prevents extra blank lines  
+
+\section{Concept: What is JSON?}
+
+\begin{definition}{JSON (JavaScript Object Notation)}
+A JSON file stores \textbf{data in key-value pairs}, making it easy to exchange information between programs and the web.
+\end{definition}
+
+\subsection{Reading a JSON File}
+
+\begin{verbatim}
+import json
+
+with open("data.json", "r") as file:
+    data = json.load(file)
+    print(data)
+\end{verbatim}
+
+- \texttt{data} becomes a Python dictionary or list  
+
+\subsection{Writing to a JSON File}
+
+\begin{verbatim}
+import json
+
+data = {
+    "students": [
+        {"name": "Amina", "grade": 9},
+        {"name": "Rafi", "grade": 8}
+    ]
+}
+
+with open("data.json", "w") as file:
+    json.dump(data, file, indent=4)
+\end{verbatim}
+
+- \texttt{indent=4} formats JSON neatly  
+
+\section{Mini-Project: Student Marks Tracker}
+
+Create a program to save and read student marks using CSV and JSON:
+
+\begin{verbatim}
+# CSV Version
+import csv
+
+students = [["Name", "Math", "Science"],
+            ["Amina", 80, 90],
+            ["Rafi", 75, 85]]
+
+with open("marks.csv", "w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerows(students)
+
+# Read CSV
+with open("marks.csv", "r") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        print(row["Name"], row["Math"], row["Science"])
+
+# JSON Version
+import json
+
+data = {"students": [{"name": "Amina", "math": 80, "science": 90},
+                     {"name": "Rafi", "math": 75, "science": 85}]}
+
+with open("marks.json", "w") as file:
+    json.dump(data, file, indent=4)
+
+# Read JSON
+with open("marks.json", "r") as file:
+    data = json.load(file)
+    for student in data["students"]:
+        print(student["name"], student["math"], student["science"])
+\end{verbatim}
+
+\section{Step-by-Step Diagram: CSV and JSON Workflow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (write) [draw, rectangle, fill=yellow!20, below of=start] {Write Data to CSV / JSON};
+\node (read) [draw, rectangle, fill=orange!20, below of=write] {Read Data from CSV / JSON};
+\node (process) [draw, rectangle, fill=yellow!20, below of=read] {Process / Display Data};
+\node (end) [draw, ellipse, fill=green!20, below of=process] {End Program};
+\draw[->] (start) -- (write);
+\draw[->] (write) -- (read);
+\draw[->] (read) -- (process);
+\draw[->] (process) -- (end);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item CSV stores \textbf{tabular data}; JSON stores \textbf{structured key-value data}  
+    \item Use \texttt{csv} and \texttt{json} modules to read/write files  
+    \item CSV rows can be lists or dictionaries  
+    \item JSON data maps naturally to Python dictionaries and lists  
+    \item Useful for \textbf{data storage, exchange, and analysis}  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What does CSV stand for?  
+    \item What does JSON stand for?  
+    \item Name one Python module for CSV and one for JSON.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write code to read a CSV file containing student marks and print each student’s total marks.  
+    \item Write code to create a JSON file containing your favorite books and their authors.  
+    \item Explain the difference between reading CSV with \texttt{csv.reader} and \texttt{csv.DictReader}.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a CSV file for 5 students with Math and Science marks. Read the file and calculate the average for each student.  
+    \item Create a JSON file storing employees’ names, positions, and salaries. Read it and display all employees earning more than 50,000.  
+    \item Combine CSV and JSON: Read student data from CSV and save it into a JSON file.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students can read and write CSV and JSON files  
+    \item Students understand mapping between CSV/JSON and Python data structures  
+    \item Students can use structured files for real-life applications  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Demonstrate with small datasets first  
+    \item Show CSV as spreadsheet analogy and JSON as key-value web data  
+    \item Encourage students to combine CSV and JSON for projects  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correct reading/writing of CSV and JSON  
+    \item Observe correct mapping to Python dictionaries and lists  
+\end{itemize}
+}

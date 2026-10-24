@@ -1,0 +1,180 @@
+\chapter{Introduction to File Handling in Python (Revisited)}
+
+\section{Introduction: Real-Life Hook}
+
+Think about tasks students often do:
+
+\begin{itemize}
+    \item Keeping a journal or diary  
+    \item Saving homework assignments or notes  
+    \item Storing lists of contacts, scores, or favorite books  
+\end{itemize}
+
+Python lets us \textbf{store data in files}, read it later, and update it. This is called \textbf{file handling}.
+
+\section{Concept: What is File Handling?}
+
+\begin{definition}{File Handling}
+File handling is the process of \textbf{creating, reading, writing, and updating files} using a programming language.
+\end{definition}
+
+- Files store information \textbf{permanently on a disk}  
+- Two common types:  
+  \begin{itemize}
+    \item Text files (\texttt{.txt}) — simple readable content  
+    \item Binary files (\texttt{.bin}, \texttt{.jpg}, \texttt{.png}) — non-text files like images, videos, etc.  
+  \end{itemize}
+
+\section{Opening and Closing Files}
+
+\begin{verbatim}
+# Open a file for reading
+file = open("notes.txt", "r")
+content = file.read()
+print(content)
+file.close()
+
+# Open a file for writing
+file = open("notes.txt", "w")
+file.write("This is my first note.\n")
+file.close()
+\end{verbatim}
+
+- \texttt{"r"} = read mode  
+- \texttt{"w"} = write mode (overwrites existing content)  
+- \texttt{"a"} = append mode (adds content at the end)  
+- Always \textbf{close files} after use  
+
+\section{Using the with Statement (Recommended)}
+
+\begin{verbatim}
+with open("notes.txt", "r") as file:
+    content = file.read()
+    print(content)
+
+with open("notes.txt", "a") as file:
+    file.write("Adding another note.\n")
+\end{verbatim}
+
+- \texttt{with} automatically \textbf{closes the file}  
+
+\section{Reading Files Line by Line}
+
+\begin{verbatim}
+with open("notes.txt", "r") as file:
+    for line in file:
+        print(line.strip())
+\end{verbatim}
+
+- \texttt{strip()} removes extra spaces and newlines  
+
+\section{Mini-Project: Student Score Logger}
+
+Concept:
+
+\begin{itemize}
+    \item Save student names and marks in a file  
+    \item Allow adding new entries  
+    \item Read all entries and calculate average marks  
+\end{itemize}
+
+Example:
+
+\begin{verbatim}
+# Writing student scores
+with open("scores.txt", "a") as file:
+    name = input("Enter student name: ")
+    marks = input("Enter marks: ")
+    file.write(f"{name},{marks}\n")
+
+# Reading student scores
+total = 0
+count = 0
+with open("scores.txt", "r") as file:
+    for line in file:
+        name, marks = line.strip().split(",")
+        print(f"{name}: {marks}")
+        total += int(marks)
+        count += 1
+
+average = total / count
+print(f"Average Marks: {average}")
+\end{verbatim}
+
+- Students learn \textbf{reading, writing, parsing, and calculating} from files  
+
+\section{Step-by-Step Diagram: File Handling Workflow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (open) [draw, rectangle, fill=yellow!20, below of=start] {Open File (r, w, a)};
+\node (process) [draw, rectangle, fill=orange!20, below of=open] {Read or Write Data};
+\node (use) [draw, rectangle, fill=yellow!20, below of=process] {Process or Display Data};
+\node (close) [draw, ellipse, fill=green!20, below of=use] {Close File};
+\draw[->] (start) -- (open);
+\draw[->] (open) -- (process);
+\draw[->] (process) -- (use);
+\draw[->] (use) -- (close);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Files store \textbf{permanent data}  
+    \item Modes: \texttt{"r"} (read), \texttt{"w"} (write), \texttt{"a"} (append)  
+    \item Always close files or use \texttt{with} statement  
+    \item Can read files line by line or as a whole  
+    \item Parsing data allows \textbf{calculations, searches, and reports}  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is file handling?  
+    \item Name three file modes.  
+    \item What is the advantage of using \texttt{with} statement?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write Python code to read a file line by line and print each line.  
+    \item Explain the difference between \texttt{"w"} and \texttt{"a"} modes.  
+    \item How do you split a CSV line into name and marks?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a program that stores your favorite movies in a file and reads them back.  
+    \item Build a mini-address book that allows adding names and phone numbers and displaying all contacts.  
+    \item Modify the Student Score Logger to save data in two separate files: one for names and one for marks.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students can create, read, write, and append files  
+    \item Students understand file modes and best practices  
+    \item Students can process data from files for calculations and reports  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Start with text files before introducing CSV or structured formats  
+    \item Demonstrate reading and writing step by step  
+    \item Encourage students to experiment with real-life examples like notes, scores, or contacts  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Observe correct file creation and reading/writing  
+    \item Check parsing of data and calculations  
+\end{itemize}
+}

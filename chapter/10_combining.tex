@@ -1,0 +1,175 @@
+\chapter{Combining Decisions and Loops in Python}
+
+\section{Introduction: Real-Life Hook}
+
+Students often face repeated decisions:
+
+\begin{itemize}
+    \item Checking multiple assignments: "Is it done or not?"  
+    \item Asking friends for answers: "Yes or No" multiple times  
+    \item Counting how many books are unread in a shelf  
+\end{itemize}
+
+Python can handle such tasks efficiently by combining \textbf{loops} and \textbf{if/else statements}.
+
+\section{Concept: Decision-Making Inside Loops}
+
+\begin{definition}{Decision Inside Loop}
+A program can check conditions repeatedly by placing \textbf{if/else statements inside loops}.  
+This allows programs to respond dynamically during repetition.
+\end{definition}
+
+\subsection{Example: Checking Multiple Marks}
+
+Ask a user for marks of 5 students and determine pass/fail:
+
+\begin{verbatim}
+for i in range(1, 6):
+    marks = int(input("Enter marks of student " + str(i) + ": "))
+    if marks >= 40:
+        print("Student", i, "passed")
+    else:
+        print("Student", i, "failed")
+\end{verbatim}
+
+- Loop repeats 5 times  
+- Decision inside the loop determines pass/fail for each student
+
+\section{Example: Guess the Number Game}
+
+\begin{verbatim}
+secret = 7
+guess = 0
+while guess != secret:
+    guess = int(input("Guess the number (1-10): "))
+    if guess < secret:
+        print("Too low, try again!")
+    elif guess > secret:
+        print("Too high, try again!")
+    else:
+        print("Congratulations! You guessed it!")
+\end{verbatim}
+
+- Loop continues until the correct guess  
+- Conditional statements guide the user
+
+\section{Step-by-Step Diagram: Loop with Decisions}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (loop) [draw, diamond, fill=yellow!20, below of=start, yshift=-1cm] {Loop Condition True?};
+\node (input) [draw, rectangle, fill=orange!20, below of=loop, yshift=-1cm] {Get Input / Task};
+\node (decision) [draw, diamond, fill=yellow!20, below of=input, yshift=-1cm] {Decision Condition True?};
+\node (trueblock) [draw, rectangle, fill=orange!20, below left of=decision, xshift=-2cm, yshift=-1cm] {Execute if True};
+\node (falseblock) [draw, rectangle, fill=orange!20, below right of=decision, xshift=2cm, yshift=-1cm] {Execute if False};
+\node (update) [draw, rectangle, fill=orange!20, right of=loop, xshift=4cm] {Update Counter/Variable};
+\node (end) [draw, ellipse, fill=green!20, left of=loop, xshift=-4cm] {End Program};
+
+\draw[->] (start) -- (loop);
+\draw[->] (loop.south) -- node[midway, right] {Yes} (input.north);
+\draw[->] (input.south) -- (decision.north);
+\draw[->] (decision.west) -| node[near start, above] {Yes} (trueblock.north);
+\draw[->] (decision.east) -| node[near start, above] {No} (falseblock.north);
+
+% Connect blocks back to update
+\draw[->] (trueblock.south) |- (0,-9) -| (update.south);
+\draw[->] (falseblock.south) |- (0,-9) -| (update.south);
+
+% Update back to loop
+\draw[->] (update.west) -- (loop.east);
+
+% End program
+\draw[->] (loop.west) -- node[midway, above] {No} (end.east);
+
+\end{tikzpicture}
+\end{center}
+
+\section{Mini-Project: Simple Quiz Game}
+
+Create a program that asks 3 questions and keeps score:
+
+\begin{verbatim}
+score = 0
+
+q1 = input("What is 2 + 2? ")
+if q1 == "4":
+    print("Correct!")
+    score += 1
+else:
+    print("Wrong!")
+
+q2 = input("What is 5 * 3? ")
+if q2 == "15":
+    print("Correct!")
+    score += 1
+else:
+    print("Wrong!")
+
+q3 = input("What is 10 - 7? ")
+if q3 == "3":
+    print("Correct!")
+    score += 1
+else:
+    print("Wrong!")
+
+print("Your total score is:", score)
+\end{verbatim}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Loops can repeat tasks multiple times.  
+    \item Decisions inside loops make programs interactive and responsive.  
+    \item Combining loops and if/else reduces repetitive code.  
+    \item Variables can store state (like score) across iterations.  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is the purpose of placing if/else inside a loop?  
+    \item Can loops run without decisions?  
+    \item Give an example of a repeated decision in real life.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write a Python program that asks 5 users for their ages and prints whether each can vote.  
+    \item Explain how the guess-the-number game works.  
+    \item Why do we update variables inside loops?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a simple arithmetic quiz with 3 questions and calculate the score using loops and if/else.  
+    \item Modify the guess-the-number game to give a hint about whether the guess is even or odd.  
+    \item Write a program that asks for 5 exam marks and prints “Excellent” for marks $\ge$ 90, “Good” for 70–89, else “Needs Improvement”.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students combine loops and if/else statements effectively.  
+    \item Students understand dynamic, interactive programs.  
+    \item Students can create games and quizzes using loops and decisions.  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Demonstrate examples interactively in class.  
+    \item Encourage students to test different inputs to explore all branches.  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Observe understanding of loop-decision combination.  
+    \item Check correctness of mini-projects like quiz and number-guessing games.  
+\end{itemize}
+}

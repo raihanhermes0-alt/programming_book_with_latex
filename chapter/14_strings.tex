@@ -1,0 +1,203 @@
+\chapter{Strings in Python: Working with Text}
+
+\section{Introduction: Real-Life Hook}
+
+Students work with text every day:  
+
+\begin{itemize}
+    \item Writing names and addresses  
+    \item Sending messages to friends  
+    \item Storing favorite quotes or book titles  
+\end{itemize}
+
+In Python, \textbf{strings} let us handle all these text tasks easily.
+
+\section{Concept: What is a String?}
+
+\begin{definition}{String}
+A \textbf{string} is a sequence of characters enclosed in quotes, used to store text in Python.
+\end{definition}
+
+\subsection{Creating Strings}
+
+\begin{verbatim}
+name = "Amina"
+message = 'Hello, how are you?'
+\end{verbatim}
+
+- Strings can use single or double quotes  
+- Can include letters, numbers, spaces, and symbols  
+
+\subsection{Accessing Characters}
+
+\begin{verbatim}
+name = "Amina"
+print(name[0])  # 'A'
+print(name[2])  # 'i'
+\end{verbatim}
+
+- Indexing starts at 0  
+- Negative indices count from the end: \texttt{name[-1]} is 'a'
+
+\subsection{String Slicing}
+
+\begin{verbatim}
+text = "Python"
+print(text[0:4])   # 'Pyth'
+print(text[2:])    # 'thon'
+print(text[:3])    # 'Pyt'
+\end{verbatim}
+
+- \texttt{[start:end]} extracts a substring from start index up to (but not including) end index  
+
+\section{String Operations}
+
+\begin{itemize}
+    \item Concatenation: joining strings using \texttt{+}  
+
+\begin{verbatim}
+first = "Hello"
+second = "World"
+print(first + " " + second)  # 'Hello World'
+\end{verbatim}
+
+    \item Repetition: repeat strings using \texttt{*}  
+
+\begin{verbatim}
+print("Ha" * 3)  # 'HaHaHa'
+\end{verbatim}
+
+    \item Length: find string length using \texttt{len()}  
+
+\begin{verbatim}
+text = "Python"
+print(len(text))  # 6
+\end{verbatim}
+\end{itemize}
+
+\section{String Methods}
+
+\begin{verbatim}
+text = "python programming"
+print(text.upper())    # 'PYTHON PROGRAMMING'
+print(text.lower())    # 'python programming'
+print(text.title())    # 'Python Programming'
+print(text.replace("python", "Java"))  # 'Java programming'
+\end{verbatim}
+
+\subsection{Checking Text}
+
+\begin{verbatim}
+text = "12345"
+print(text.isdigit())  # True
+print(text.isalpha())  # False
+\end{verbatim}
+
+\section{Looping Through Strings}
+
+\begin{verbatim}
+word = "Python"
+for char in word:
+    print(char)
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+P
+y
+t
+h
+o
+n
+\end{verbatim}
+
+\section{Mini-Project: Word Analyzer}
+
+Create a program that asks the user to enter a word and prints:  
+
+\begin{itemize}
+    \item Number of characters  
+    \item Uppercase version  
+    \item First and last character  
+\end{itemize}
+
+\begin{verbatim}
+word = input("Enter a word: ")
+print("Length:", len(word))
+print("Uppercase:", word.upper())
+print("First character:", word[0])
+print("Last character:", word[-1])
+\end{verbatim}
+
+\section{Step-by-Step Diagram: String Operations Flow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (input) [draw, rectangle, fill=yellow!20, below of=start] {Get String Input};
+\node (process) [draw, rectangle, fill=orange!20, below of=input] {Apply String Operations / Methods};
+\node (output) [draw, ellipse, fill=green!20, below of=process] {Display Results};
+\draw[->] (start) -- (input);
+\draw[->] (input) -- (process);
+\draw[->] (process) -- (output);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Strings store text in quotes and are indexed starting from 0  
+    \item Strings can be sliced, concatenated, repeated, and measured  
+    \item Methods allow modification, replacement, and checking of strings  
+    \item Loops can iterate through each character in a string  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is a string in Python?  
+    \item How do you find the length of a string?  
+    \item Name two string methods to change case.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write a program to print the first and last character of a word.  
+    \item How do you check if a string contains only numbers?  
+    \item Explain string slicing with an example.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Ask the user to enter their full name and print it in uppercase and lowercase.  
+    \item Count the number of vowels in a word entered by the user.  
+    \item Create a program to replace all spaces in a sentence with hyphens (``-'').  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students understand what strings are and how to manipulate them  
+    \item Students can apply string methods and slicing  
+    \item Students can loop through strings for character-level operations  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Use real-life examples like names, messages, or sentences  
+    \item Demonstrate indexing, slicing, and methods live in class  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correctness of string operations  
+    \item Observe understanding of indexing, slicing, and loops over strings  
+\end{itemize}
+}

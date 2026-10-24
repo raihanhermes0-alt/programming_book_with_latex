@@ -1,0 +1,269 @@
+\chapter{Introduction to Game Programming in Python (Pygame)}
+
+\section{Introduction: Real-Life Hook}
+
+Think about your favorite video games:  
+
+\begin{itemize}
+    \item Moving a character across the screen  
+    \item Collecting points or avoiding obstacles  
+    \item Interactive buttons and score displays  
+\end{itemize}
+
+Python’s \textbf{Pygame} library allows you to \textbf{create simple 2D games}, helping you combine \textbf{loops, functions, events, and graphics} in a fun way.
+
+\section{Concept: What is Pygame?}
+
+\begin{definition}{Pygame}
+Pygame is a Python library that helps you create \textbf{games and multimedia applications} using graphics, sounds, and events.
+\end{definition}
+
+\section{Installing Pygame}
+
+Use pip to install:
+
+\begin{verbatim}
+pip install pygame
+\end{verbatim}
+
+\section{Creating a Basic Game Window}
+
+\begin{verbatim}
+import pygame
+
+# Initialize Pygame
+pygame.init()
+
+# Create window
+window = pygame.display.set_mode((400, 300))
+pygame.display.set_caption("My First Game")
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+pygame.quit()
+\end{verbatim}
+
+- \texttt{pygame.init()} initializes all Pygame modules  
+- \texttt{set\_mode()} creates the game window  
+- Event loop listens for actions like closing the window  
+
+\section{Drawing Shapes and Colors}
+
+\begin{verbatim}
+import pygame
+
+pygame.init()
+window = pygame.display.set_mode((400, 300))
+pygame.display.set_caption("Draw Shapes")
+
+# Colors
+white = (255, 255, 255)
+blue = (0, 0, 255)
+
+# Fill background
+window.fill(white)
+
+# Draw a rectangle
+pygame.draw.rect(window, blue, (50, 50, 100, 50))  # x, y, width, height
+
+pygame.display.update()  # Refresh display
+
+# Wait for 3 seconds
+pygame.time.wait(3000)
+pygame.quit()
+\end{verbatim}
+
+- Use RGB tuples for colors  
+- \texttt{pygame.draw} allows drawing rectangles, circles, lines, etc.  
+
+\section{Handling Keyboard Events}
+
+\begin{verbatim}
+import pygame
+
+pygame.init()
+window = pygame.display.set_mode((400, 300))
+pygame.display.set_caption("Keyboard Example")
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                print("Up arrow pressed")
+            elif event.key == pygame.K_DOWN:
+                print("Down arrow pressed")
+
+pygame.quit()
+\end{verbatim}
+
+- Detect which key the player presses  
+- Useful for moving characters or controlling actions  
+
+\section{Mini-Project: Catch the Ball Game}
+
+Concept:
+
+\begin{itemize}
+    \item Ball falls from the top of the window  
+    \item Player controls a basket at the bottom using left/right keys  
+    \item Catch the ball to earn points  
+\end{itemize}
+
+Basic structure:
+
+\begin{verbatim}
+import pygame
+import random
+
+pygame.init()
+window = pygame.display.set_mode((400, 500))
+pygame.display.set_caption("Catch the Ball")
+clock = pygame.time.Clock()
+
+# Colors
+white = (255,255,255)
+red = (255,0,0)
+blue = (0,0,255)
+
+# Basket
+basket_width = 80
+basket_x = 160
+basket_y = 450
+
+# Ball
+ball_radius = 20
+ball_x = random.randint(ball_radius, 400-ball_radius)
+ball_y = 0
+ball_speed = 5
+
+score = 0
+running = True
+while running:
+    window.fill(white)
+
+    # Draw basket
+    pygame.draw.rect(window, blue, (basket_x, basket_y, basket_width, 20))
+
+    # Draw ball
+    pygame.draw.circle(window, red, (ball_x, ball_y), ball_radius)
+
+    # Move ball
+    ball_y += ball_speed
+
+    # Check catch
+    if (basket_y <= ball_y + ball_radius <= basket_y + 20) and 
+       (basket_x <= ball_x <= basket_x + basket_width):
+        score += 1
+        ball_y = 0
+        ball_x = random.randint(ball_radius, 400-ball_radius)
+
+    # Event handling
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Move basket
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT] and basket_x > 0:
+        basket_x -= 5
+    if keys[pygame.K_RIGHT] and basket_x < 320:
+        basket_x += 5
+
+    # Display score
+    font = pygame.font.Font(None, 36)
+    text = font.render(f"Score: {score}", True, (0,0,0))
+    window.blit(text, (10,10))
+
+    pygame.display.update()
+    clock.tick(30)
+
+pygame.quit()
+\end{verbatim}
+
+- Students learn \textbf{graphics, movement, collision detection, and scoring}  
+
+\section{Step-by-Step Diagram: Pygame Game Loop}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Game};
+\node (event) [draw, rectangle, fill=yellow!20, below of=start] {Check Events (Keyboard/Mouse)};
+\node (update) [draw, rectangle, fill=orange!20, below of=event] {Update Game State (Move Ball/Basket)};
+\node (draw) [draw, rectangle, fill=yellow!20, below of=update] {Draw Graphics on Screen};
+\node (loop) [draw, diamond, aspect=2, fill=orange!20, below of=draw, yshift=-0.5cm] {Loop Until Game Ends};
+\node (end) [draw, ellipse, fill=green!20, below of=loop, yshift=-1cm] {End Game};
+\draw[->] (start) -- (event);
+\draw[->] (event) -- (update);
+\draw[->] (update) -- (draw);
+\draw[->] (draw) -- (loop);
+\draw[->] (loop.south) -- (end.north);
+\draw[->] (loop.east) -- ++(2,0) |- (event.east);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Pygame allows \textbf{2D graphics and multimedia} in Python  
+    \item Game loop: \textbf{event handling $\rightarrow$ update state $\rightarrow$ draw graphics}  
+    \item Keyboard and mouse events control game objects  
+    \item Collision detection is essential for interaction  
+    \item Scoring and game state updates make games interactive  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is Pygame?  
+    \item What is a game loop?  
+    \item Name two Pygame functions for drawing shapes.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write code to create a Pygame window with a moving rectangle.  
+    \item Explain how \texttt{pygame.key.get\_pressed()} works.  
+    \item What is the purpose of \texttt{clock.tick()} in the game loop?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Modify the Catch the Ball game to include multiple balls falling at different speeds.  
+    \item Add a timer to the game that ends after 60 seconds and displays the final score.  
+    \item Create a simple maze game where a player moves a square using arrow keys and reaches a goal.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students can create windows, draw shapes, and handle keyboard events  
+    \item Students understand the game loop and event-driven programming  
+    \item Students can build simple interactive games with scoring  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Start with basic window and shapes before adding movement  
+    \item Encourage students to experiment with colors, speed, and sizes  
+    \item Show step-by-step collision detection and scoring logic  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correctness of game loop and event handling  
+    \item Observe interactive elements, movement, and scoring  
+\end{itemize}
+}

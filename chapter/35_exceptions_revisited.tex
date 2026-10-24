@@ -1,0 +1,232 @@
+\chapter{Introduction to Exception Handling in Python (Revisited)}
+
+\section{Introduction: Real-Life Hook}
+
+Rafi is a high school student who created a small calculator program.
+One day, his friend entered \texttt{0} as the divisor.
+Suddenly, the program crashed and showed a scary error message.
+
+Rafi felt confused and worried.
+``Why did my program stop? Why didn’t it handle the mistake?''
+
+In real life:
+\begin{itemize}
+    \item Students type wrong input
+    \item Users make mistakes
+    \item Files may not exist
+\end{itemize}
+
+A good program should not crash.
+It should \textbf{handle errors politely}.
+This is where \textbf{exception handling} comes in.
+
+\section{Concept: What Is an Exception?}
+
+\begin{definition}{Exception}
+An exception is an \textbf{error that occurs during program execution} and stops the normal flow of the program.
+\end{definition}
+
+Common examples:
+\begin{itemize}
+    \item Dividing by zero
+    \item Entering text instead of a number
+    \item Opening a file that does not exist
+\end{itemize}
+
+Example without handling:
+
+\begin{verbatim}
+x = 10
+y = 0
+print(x / y)
+\end{verbatim}
+
+This causes a \textbf{runtime error} and stops the program.
+
+\section{Why Exception Handling Is Important}
+
+\begin{itemize}
+    \item Prevents program crashes
+    \item Improves user experience
+    \item Makes programs reliable and professional
+    \item Helps in real-world applications like banking, apps, and websites
+\end{itemize}
+
+\section{The try and except Block}
+
+Python provides \texttt{try} and \texttt{except} to handle errors.
+
+\begin{verbatim}
+try:
+    x = int(input("Enter a number: "))
+    y = int(input("Enter another number: "))
+    print(x / y)
+except:
+    print("Something went wrong!")
+\end{verbatim}
+
+How it works:
+\begin{itemize}
+    \item Python tries the code inside \texttt{try}
+    \item If an error occurs, \texttt{except} runs
+    \item Program does not crash
+\end{itemize}
+
+\section{Handling Specific Exceptions}
+
+It is better to handle \textbf{specific errors}.
+
+\begin{verbatim}
+try:
+    num = int(input("Enter a number: "))
+    print(10 / num)
+except ZeroDivisionError:
+    print("You cannot divide by zero.")
+except ValueError:
+    print("Please enter a valid number.")
+\end{verbatim}
+
+Common exceptions:
+\begin{itemize}
+    \item \texttt{ZeroDivisionError}
+    \item \texttt{ValueError}
+    \item \texttt{FileNotFoundError}
+\end{itemize}
+
+\section{Using else and finally}
+
+\subsection{else Block}
+
+\begin{verbatim}
+try:
+    num = int(input("Enter a number: "))
+    print(10 / num)
+except ZeroDivisionError:
+    print("Division by zero is not allowed.")
+else:
+    print("Calculation successful!")
+\end{verbatim}
+
+\subsection{finally Block}
+
+\begin{verbatim}
+try:
+    file = open("data.txt", "r")
+    print(file.read())
+except FileNotFoundError:
+    print("File not found.")
+finally:
+    print("Program finished.")
+\end{verbatim}
+
+\begin{itemize}
+    \item \texttt{else} runs when no error occurs
+    \item \texttt{finally} always runs
+\end{itemize}
+
+\section{Mini-Project: Safe Calculator}
+
+\textbf{Problem:}  
+Create a calculator that never crashes, even if the user enters wrong input.
+
+\begin{verbatim}
+try:
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+    print("Result:", a / b)
+except ZeroDivisionError:
+    print("Error: Division by zero.")
+except ValueError:
+    print("Error: Invalid input.")
+else:
+    print("Thank you for using the calculator.")
+\end{verbatim}
+
+This project teaches:
+\begin{itemize}
+    \item User input validation
+    \item Error handling
+    \item Professional program behavior
+\end{itemize}
+
+\section{Diagram: Exception Handling Flow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (try) [draw, rectangle, fill=yellow!20, below of=start] {Try Block};
+\node (error) [draw, diamond, fill=orange!20, below of=try] {Error Occurs?};
+\node (except) [draw, rectangle, fill=red!20, right of=error, xshift=3cm] {Except Block};
+\node (else) [draw, rectangle, fill=green!20, left of=error, xshift=-3cm] {Else Block};
+\node (finally) [draw, rectangle, fill=blue!20, below of=error, yshift=-1.5cm] {Finally Block};
+\node (end) [draw, ellipse, fill=green!20, below of=finally] {End Program};
+
+\draw[->] (start) -- (try);
+\draw[->] (try) -- (error);
+\draw[->] (error) -- node[above]{Yes} (except);
+\draw[->] (error) -- node[above]{No} (else);
+\draw[->] (except) |- (finally);
+\draw[->] (else) |- (finally);
+\draw[->] (finally) -- (end);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Exceptions are runtime errors
+    \item \texttt{try} tests risky code
+    \item \texttt{except} handles errors
+    \item \texttt{else} runs when no error occurs
+    \item \texttt{finally} always executes
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\subsection{Very Short Questions}
+
+\begin{enumerate}
+    \item What is an exception?
+    \item Name one built-in Python exception.
+    \item Which block always executes?
+\end{enumerate}
+
+\subsection{Short Answer Questions}
+
+\begin{enumerate}
+    \item Explain the difference between \texttt{try} and \texttt{except}.
+    \item Write a program to handle division by zero.
+    \item Why is exception handling important in real-life programs?
+\end{enumerate}
+
+\subsection{Activity-Based Exercises}
+
+\begin{enumerate}
+    \item Create a program that asks for age and handles non-numeric input.
+    \item Write a file-reading program that handles missing files.
+    \item Modify the calculator to handle multiplication and subtraction errors.
+\end{enumerate}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives}
+\begin{itemize}
+    \item Students understand runtime errors
+    \item Students can use try-except blocks
+    \item Students can write safer programs
+\end{itemize}
+
+\textbf{Teaching Tips}
+\begin{itemize}
+    \item Demonstrate common mistakes live in class
+    \item Encourage students to break programs and fix them
+    \item Use real-life examples of user mistakes
+\end{itemize}
+
+\textbf{Assessment}
+\begin{itemize}
+    \item Correct use of exception handling
+    \item Clear error messages
+\end{itemize}
+}

@@ -1,0 +1,317 @@
+
+\chapter*{Practical Lab Manual}
+\addcontentsline{toc}{chapter}{Practical Lab Manual}
+
+\section*{Introduction to the Lab Manual}
+
+This lab manual is designed to help students:
+\begin{itemize}
+    \item Learn programming by doing
+    \item Practice real-life problem solving
+    \item Prepare for practical examinations
+\end{itemize}
+
+Each experiment includes:
+\begin{itemize}
+    \item Aim
+    \item Concept
+    \item Algorithm
+    \item Program
+    \item Output
+    \item Viva Questions
+\end{itemize}
+
+\section*{General Lab Rules}
+
+\begin{itemize}
+    \item Follow teacher instructions carefully
+    \item Write programs neatly
+    \item Test programs before submission
+    \item Do not fear errors
+\end{itemize}
+
+\newpage
+\section*{Experiment 1: Printing Messages}
+
+\textbf{Aim:}  
+To display a simple message using Python.
+
+\textbf{Concept Used:}  
+Print statement.
+
+\textbf{Algorithm:}
+\begin{enumerate}
+    \item Start
+    \item Display message
+    \item Stop
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm, auto]
+    \node (start) [ellipse, draw, fill=green!20] {Start};
+    \node (print) [io, below of=start] {Print "Hello..."};
+    \node (stop) [ellipse, draw, fill=red!20, below of=print] {Stop};
+
+    \draw [arrow] (start) -- (print);
+    \draw [arrow] (print) -- (stop);
+\end{tikzpicture}
+\end{center}
+
+\textbf{Program:}
+\begin{verbatim}
+print("Hello, welcome to Python Programming!")
+\end{verbatim}
+
+\textbf{Output:}
+\begin{verbatim}
+Hello, welcome to Python Programming!
+\end{verbatim}
+
+\textbf{Viva Questions:}
+\begin{itemize}
+    \item What does print do?
+    \item Is Python case-sensitive?
+\end{itemize}
+
+\newpage
+\section*{Experiment 2: Using Variables}
+
+\textbf{Aim:}  
+To store and display student information.
+
+\textbf{Concept Used:}  
+Variables and data types.
+
+\textbf{Algorithm:}
+\begin{enumerate}
+    \item Store name in variable
+    \item Store roll number
+    \item Display values
+\end{enumerate}
+
+\textbf{Program:}
+\begin{verbatim}
+name = "Rahim"
+roll = 10
+print("Name:", name)
+print("Roll:", roll)
+\end{verbatim}
+
+\textbf{Output:}
+\begin{verbatim}
+Name: Rahim
+Roll: 10
+\end{verbatim}
+
+\textbf{Viva Questions:}
+\begin{itemize}
+    \item What is a variable?
+    \item Why do we use variables?
+\end{itemize}
+
+\newpage
+\section*{Experiment 3: Input from User}
+
+\textbf{Aim:}  
+To take input from the user.
+
+\textbf{Concept Used:}  
+Input function.
+
+\textbf{Program:}
+\begin{verbatim}
+name = input("Enter your name: ")
+print("Welcome", name)
+\end{verbatim}
+
+\textbf{Output:}
+\begin{verbatim}
+Enter your name: Ayesha
+Welcome Ayesha
+\end{verbatim}
+
+\textbf{Viva Questions:}
+\begin{itemize}
+    \item What does input() return?
+\end{itemize}
+
+\newpage
+\section*{Experiment 4: Decision Making}
+
+\textbf{Aim:}  
+To check pass or fail.
+
+\textbf{Concept Used:}  
+if-else statement.
+
+\textbf{Program:}
+\begin{verbatim}
+marks = int(input("Enter marks: "))
+if marks >= 33:
+    print("Pass")
+else:
+    print("Fail")
+\end{verbatim}
+
+\textbf{Viva Questions:}
+\begin{itemize}
+    \item What is conditional statement?
+\end{itemize}
+
+\newpage
+\section*{Experiment 5: Using Loops}
+
+\textbf{Aim:}  
+To print numbers from 1 to 10.
+
+\textbf{Concept Used:}  
+for loop.
+
+\textbf{Program:}
+\begin{verbatim}
+for i in range(1, 11):
+    print(i)
+\end{verbatim}
+
+\textbf{Viva Questions:}
+\begin{itemize}
+    \item Why do we use loops?
+\end{itemize}
+
+\newpage
+\section*{Experiment 6: Functions}
+
+\textbf{Aim:}  
+To create a simple calculator function.
+
+\textbf{Concept Used:}  
+Functions.
+
+\textbf{Program:}
+\begin{verbatim}
+def add(a, b):
+    return a + b
+
+print(add(5, 3))
+\end{verbatim}
+
+\textbf{Viva Questions:}
+\begin{itemize}
+    \item What is a function?
+\end{itemize}
+
+\newpage
+\section*{Experiment 7: Lists}
+
+\textbf{Aim:}  
+To store multiple student marks.
+
+\textbf{Concept Used:}  
+List.
+
+\textbf{Program:}
+\begin{verbatim}
+marks = [70, 80, 90]
+print(marks)
+\end{verbatim}
+
+\textbf{Viva Questions:}
+\begin{itemize}
+    \item What is a list?
+\end{itemize}
+
+\newpage
+\section*{Experiment 8: File Handling}
+
+\textbf{Aim:}  
+To save student data in a file.
+
+\textbf{Concept Used:}  
+File handling.
+
+\textbf{Program:}
+\begin{verbatim}
+file = open("students.txt", "w")
+file.write("Rahim\n")
+file.close()
+\end{verbatim}
+
+\textbf{Viva Questions:}
+\begin{itemize}
+    \item Why is file handling important?
+\end{itemize}
+
+\newpage
+\section*{Experiment 9: Object-Oriented Programming}
+
+\textbf{Aim:}  
+To create a student class.
+
+\textbf{Concept Used:}  
+Class and object.
+
+\textbf{Program:}
+\begin{verbatim}
+class Student:
+    def __init__(self, name):
+        self.name = name
+
+s = Student("Karim")
+print(s.name)
+\end{verbatim}
+
+\textbf{Viva Questions:}
+\begin{itemize}
+    \item What is a class?
+\end{itemize}
+
+\newpage
+\section*{Experiment 10: GUI Programming}
+
+\textbf{Aim:}  
+To create a simple GUI window.
+
+\textbf{Concept Used:}  
+Tkinter.
+
+\textbf{Program:}
+\begin{verbatim}
+import tkinter as tk
+
+window = tk.Tk()
+window.title("My App")
+window.mainloop()
+\end{verbatim}
+
+\textbf{Viva Questions:}
+\begin{itemize}
+    \item What is GUI?
+\end{itemize}
+
+\newpage
+\section*{Final Practical Project}
+
+\textbf{Project Title:} Student Record System
+
+\textbf{Description:}  
+Create a program to:
+\begin{itemize}
+    \item Add student data
+    \item Save data to file
+    \item Display saved data
+\end{itemize}
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+    \item Logic – 40\%
+    \item Correct Output – 30\%
+    \item Code Neatness – 20\%
+    \item Viva – 10\%
+\end{itemize}
+
+\section*{Conclusion}
+
+Practice is the key to learning programming.
+Every error is a lesson.
+
+Keep practicing!

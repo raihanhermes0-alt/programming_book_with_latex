@@ -1,0 +1,172 @@
+\chapter{Introduction to File Handling in Python}
+
+\section{Introduction: Real-Life Hook}
+
+Students deal with information stored in files every day:  
+
+\begin{itemize}
+    \item Saving homework or notes  
+    \item Keeping contact lists  
+    \item Storing exam scores  
+\end{itemize}
+
+Python allows programs to \textbf{read from and write to files}, so data can be stored permanently and reused later.
+
+\section{Concept: What is a File?}
+
+\begin{definition}{File}
+A \textbf{file} is a collection of information stored on a computer, which can be text or binary data.  
+Python provides built-in functions to read and write text files.
+\end{definition}
+
+\section{Opening and Closing Files}
+
+\begin{verbatim}
+# Open a file in write mode
+f = open("data.txt", "w")  # 'w' = write mode
+f.write("Hello, Python!\n")
+f.close()
+\end{verbatim}
+
+- \texttt{"w"} = write mode (creates new file or overwrites existing)  
+- \texttt{"r"} = read mode  
+- \texttt{"a"} = append mode (adds to existing file)  
+- Always \textbf{close} files to save changes  
+
+\subsection{Using with Statement (Recommended)}
+
+\begin{verbatim}
+with open("data.txt", "w") as f:
+    f.write("Hello, Python!\n")
+# File automatically closes
+\end{verbatim}
+
+\section{Reading from Files}
+
+\begin{verbatim}
+with open("data.txt", "r") as f:
+    content = f.read()
+    print(content)
+\end{verbatim}
+
+- \texttt{read()} reads the entire file  
+- \texttt{readline()} reads one line at a time  
+- \texttt{readlines()} returns all lines as a list  
+
+\subsection{Example: Reading Line by Line}
+
+\begin{verbatim}
+with open("data.txt", "r") as f:
+    for line in f:
+        print(line.strip())  # Remove newline characters
+\end{verbatim}
+
+\section{Appending to Files}
+
+\begin{verbatim}
+with open("data.txt", "a") as f:
+    f.write("New line added\n")
+\end{verbatim}
+
+\section{Mini-Project: Contact List Program}
+
+Create a program to save and read contact names:
+
+\begin{verbatim}
+# Write contacts
+contacts = ["Amina", "Rafi", "Sadia"]
+
+with open("contacts.txt", "w") as f:
+    for contact in contacts:
+        f.write(contact + "\n")
+
+# Read contacts
+with open("contacts.txt", "r") as f:
+    print("Contact List:")
+    for line in f:
+        print(line.strip())
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+Contact List:
+Amina
+Rafi
+Sadia
+\end{verbatim}
+
+\section{Step-by-Step Diagram: File Handling Flow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (open) [draw, rectangle, fill=yellow!20, below of=start] {Open File (r/w/a)};
+\node (process) [draw, rectangle, fill=orange!20, below of=open] {Read/Write Data};
+\node (close) [draw, rectangle, fill=yellow!20, below of=process] {Close File};
+\node (end) [draw, ellipse, fill=green!20, below of=close] {End Program};
+\draw[->] (start) -- (open);
+\draw[->] (open) -- (process);
+\draw[->] (process) -- (close);
+\draw[->] (close) -- (end);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Files store data permanently on a computer  
+    \item Python can \textbf{read} and \textbf{write} files using built-in functions  
+    \item Always \textbf{close files} after use or use \texttt{with} statement  
+    \item File modes: \texttt{"r"} = read, \texttt{"w"} = write, \texttt{"a"} = append  
+    \item Use loops to read files line by line  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is a file in Python?  
+    \item Name three file modes in Python.  
+    \item Why should files be closed after writing?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write Python code to read a file and print its content.  
+    \item How is \texttt{with open()} different from \texttt{open()}?  
+    \item Explain the difference between \texttt{read()}, \texttt{readline()}, and \texttt{readlines()}.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Write a program to take 5 names as input and save them in a file. Then read the file and display all names.  
+    \item Create a program to append a new score to an existing file of student marks.  
+    \item Read a text file and count the total number of words in it.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students understand how to open, read, write, and append files  
+    \item Students can use loops to process file data line by line  
+    \item Students learn to use \texttt{with open()} for safe file handling  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Demonstrate writing to a file, reading it, and appending data  
+    \item Relate examples to daily life: homework, contact lists, scores  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correct reading and writing of files  
+    \item Observe use of loops with file data  
+\end{itemize}
+}

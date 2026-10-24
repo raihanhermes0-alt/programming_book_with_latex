@@ -1,0 +1,237 @@
+\chapter{Introduction to Web Development with Python (Flask)}
+
+\section{Introduction: Real-Life Hook}
+
+Think about things students see online every day:
+
+\begin{itemize}
+    \item School websites with notices  
+    \item Online quizzes or forms  
+    \item Simple blogs or portfolio websites  
+\end{itemize}
+
+Flask is a \textbf{Python framework that lets you create your own web applications} easily and quickly.
+
+\section{Concept: What is Flask?}
+
+\begin{definition}{Flask}
+Flask is a \textbf{lightweight Python web framework} that allows you to build web applications with minimal code.
+\end{definition}
+
+- Lightweight means it is \textbf{easy for beginners}  
+- Provides \textbf{routes, templates, and server handling}  
+- Perfect for \textbf{small projects, prototypes, and learning web development}
+
+\section{Setting Up Flask}
+
+Install Flask:
+
+\begin{verbatim}
+pip install Flask
+\end{verbatim}
+
+\section{Creating Your First Flask App}
+
+\begin{verbatim}
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Hello, Flask!"
+
+if __name__ == "__main__":
+    app.run(debug=True)
+\end{verbatim}
+
+Explanation:
+
+\begin{itemize}
+    \item \texttt{Flask(\_\_name\_\_)} creates the app  
+    \item \texttt{@app.route("/")} defines the home page  
+    \item \texttt{app.run(debug=True)} runs the web server  
+\end{itemize}
+
+\section{Using HTML Templates}
+
+Flask can render HTML for nicer web pages:
+
+1. Create a folder \texttt{templates/}  
+2. Add \texttt{index.html}:
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head><title>Home Page</title></head>
+<body>
+<h1>Welcome to My Website!</h1>
+<p>This is a Flask web page.</p>
+</body>
+</html>
+\end{verbatim}
+
+3. Update \texttt{app.py}:
+
+\begin{verbatim}
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
+\end{verbatim}
+
+- \texttt{render\_template()} loads HTML files from \texttt{templates/} folder  
+
+\section{Handling Forms and User Input}
+
+\begin{verbatim}
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+@app.route("/", methods=["GET", "POST"])
+def home():
+    message = ""
+    if request.method == "POST":
+        name = request.form["name"]
+        message = f"Hello, {name}!"
+    return render_template("form.html", message=message)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+\end{verbatim}
+
+\texttt{form.html}:
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Enter Your Name</h1>
+<form method="POST">
+  <input type="text" name="name" placeholder="Your Name">
+  <input type="submit" value="Submit">
+</form>
+<p>{{ message }}</p>
+</body>
+</html>
+\end{verbatim}
+
+- Students learn \textbf{GET/POST methods, input handling, and dynamic web pages}  
+
+\section{Mini-Project: Student Feedback Web App}
+
+Concept:
+
+\begin{itemize}
+    \item Students enter their name and feedback in a form  
+    \item Server stores or displays the feedback  
+    \item Page shows a thank-you message after submission  
+\end{itemize}
+
+Basic structure:
+
+\begin{verbatim}
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+feedbacks = []
+
+@app.route("/", methods=["GET", "POST"])
+def home():
+    if request.method == "POST":
+        name = request.form["name"]
+        feedback = request.form["feedback"]
+        feedbacks.append({"name": name, "feedback": feedback})
+        return render_template("thankyou.html", name=name)
+    return render_template("feedback_form.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
+\end{verbatim}
+
+- Students learn \textbf{dynamic content, lists/dictionaries to store data, and templates}  
+
+\section{Step-by-Step Diagram: Flask App Workflow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {User Opens Web Page};
+\node (request) [draw, rectangle, fill=yellow!20, below of=start] {HTTP Request Sent to Flask Server};
+\node (route) [draw, rectangle, fill=orange!20, below of=request] {Server Processes Route / Logic};
+\node (template) [draw, rectangle, fill=yellow!20, below of=route] {Render HTML Template};
+\node (response) [draw, rectangle, fill=orange!20, below of=template] {Send Response Back to User};
+\node (end) [draw, ellipse, fill=green!20, below of=response] {Page Displayed in Browser};
+\draw[->] (start) -- (request);
+\draw[->] (request) -- (route);
+\draw[->] (route) -- (template);
+\draw[->] (template) -- (response);
+\draw[->] (response) -- (end);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Flask is a lightweight Python framework for \textbf{web development}  
+    \item Routes map \textbf{URLs to functions}  
+    \item Templates allow \textbf{dynamic HTML content}  
+    \item Forms and POST requests allow \textbf{user input handling}  
+    \item Students can create \textbf{interactive web apps} with minimal code  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is Flask used for?  
+    \item Name two types of HTTP requests.  
+    \item What folder is used to store HTML templates in Flask?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write a Flask route that returns “Hello World”.  
+    \item Explain the difference between GET and POST methods.  
+    \item How do you render an HTML file in Flask?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a Flask app that accepts student names and marks, then displays the highest mark.  
+    \item Build a small quiz web app with 3 questions and display the score after submission.  
+    \item Modify the feedback form to show all previous feedbacks below the form.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students understand Flask basics and routes  
+    \item Students can create HTML templates and forms  
+    \item Students can build simple interactive web applications  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Start with simple “Hello World” route before forms  
+    \item Explain HTTP requests and responses in simple terms  
+    \item Encourage students to customize HTML with colors and fonts  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correct route handling and template rendering  
+    \item Observe user input handling and dynamic content display  
+\end{itemize}
+}

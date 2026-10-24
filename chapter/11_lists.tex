@@ -1,0 +1,181 @@
+\chapter{Using Lists in Python}
+
+\section{Introduction: Real-Life Hook}
+
+Students often keep track of multiple items:  
+
+\begin{itemize}
+    \item Favorite snacks  
+    \item Subjects in school  
+    \item Friends’ names  
+    \item Scores in multiple tests  
+\end{itemize}
+
+In Python, \textbf{lists} let us store multiple items in a single variable, making programs organized and efficient.
+
+\section{Concept: What is a List?}
+
+\begin{definition}{List}
+A \textbf{list} in Python is an ordered collection of items, which can be numbers, strings, or even other lists.
+\end{definition}
+
+\subsection{Creating a List}
+
+\begin{verbatim}
+fruits = ["apple", "banana", "mango"]
+marks = [80, 70, 95]
+\end{verbatim}
+
+- Lists are enclosed in square brackets \texttt{[]}  
+- Items are separated by commas  
+- Order matters; the first item has index 0
+
+\section{Accessing Items in a List}
+
+\begin{verbatim}
+print(fruits[0])  # apple
+print(marks[2])   # 95
+\end{verbatim}
+
+\subsection{Updating Items in a List}
+
+\begin{verbatim}
+fruits[1] = "orange"
+print(fruits)  # ["apple", "orange", "mango"]
+\end{verbatim}
+
+\subsection{Adding Items to a List}
+
+\begin{verbatim}
+fruits.append("grapes")
+print(fruits)  # ["apple", "orange", "mango", "grapes"]
+\end{verbatim}
+
+\subsection{Removing Items from a List}
+
+\begin{verbatim}
+fruits.remove("apple")
+print(fruits)  # ["orange", "mango", "grapes"]
+\end{verbatim}
+
+\section{Looping Through a List}
+
+\begin{verbatim}
+for fruit in fruits:
+    print("I like", fruit)
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+I like orange
+I like mango
+I like grapes
+\end{verbatim}
+
+\section{Step-by-Step Diagram: List Operations}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (create) [draw, rectangle, fill=yellow!20, below of=start] {Create List};
+\node (access) [draw, rectangle, fill=orange!20, below of=create] {Access / Update / Add / Remove Items};
+\node (loop) [draw, rectangle, fill=orange!20, below of=access] {Loop Through List};
+\node (output) [draw, ellipse, fill=green!20, below of=loop] {End Program};
+\draw[->] (start) -- (create);
+\draw[->] (create) -- (access);
+\draw[->] (access) -- (loop);
+\draw[->] (loop) -- (output);
+\end{tikzpicture}
+\end{center}
+
+\section{Mini-Project: Favorite Foods List}
+
+Create a program that stores your favorite foods in a list and prints them nicely:
+
+\begin{verbatim}
+foods = ["pizza", "burger", "ice cream"]
+foods.append("chocolate")
+for food in foods:
+    print("I love", food)
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+I love pizza
+I love burger
+I love ice cream
+I love chocolate
+\end{verbatim}
+
+\section{Using Lists with User Input}
+
+\begin{verbatim}
+numbers = []
+for i in range(3):
+    num = int(input("Enter a number: "))
+    numbers.append(num)
+print("Your numbers are:", numbers)
+\end{verbatim}
+
+- User inputs are stored dynamically in the list  
+- Loops make collecting multiple inputs easy
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Lists store multiple items in a single variable  
+    \item Items are ordered and indexed starting from 0  
+    \item Lists can be updated, added to, or removed from  
+    \item Loops work perfectly with lists to process each item  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is a list in Python?  
+    \item How do you access the first item of a list?  
+    \item Name two ways to modify a list.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write a Python program to store 5 of your favorite movies in a list and print them.  
+    \item How can you remove an item from a list? Give an example.  
+    \item Explain why loops are useful with lists.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Ask the user for 5 city names and store them in a list. Print them with a message "I want to visit \underline{\hspace{2cm}}".
+    \item Create a list of test scores and calculate the average using a loop.  
+    \item Make a list of your favorite subjects, update one of them, and print the final list.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students learn to create and manage lists.  
+    \item Students can loop through lists for processing.  
+    \item Students can update, add, and remove items dynamically.  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Use real-life examples (foods, movies, friends’ names).  
+    \item Demonstrate append, remove, and looping live in Python IDE.  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correctness of list operations.  
+    \item Observe understanding of loops with lists.  
+\end{itemize}
+}

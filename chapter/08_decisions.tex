@@ -1,0 +1,159 @@
+\chapter{Making Decisions in Python: if/else Statements}
+
+\section{Introduction: Real-Life Hook}
+
+In daily life, students make decisions every day:  
+
+\begin{itemize}
+    \item Should I bring an umbrella? (If it rains)  
+    \item Should I do homework now or later?  
+    \item Should I eat a snack before lunch?  
+\end{itemize}
+
+Programs can also make decisions using \textbf{conditions}.
+
+\section{Concept: Conditional Statements}
+
+\begin{definition}{Conditional Statement}
+A \textbf{conditional statement} allows a program to make decisions based on whether a condition is true or false.
+\end{definition}
+
+\subsection{Python if Statement}
+
+The simplest form:
+
+\begin{verbatim}
+age = 15
+if age >= 18:
+    print("You can vote")
+\end{verbatim}
+
+- If the condition (\texttt{age >= 18}) is true, the program executes the indented block.  
+- If false, nothing happens.
+
+\subsection{Python if/else Statement}
+
+To handle both cases:
+
+\begin{verbatim}
+age = 15
+if age >= 18:
+    print("You can vote")
+else:
+    print("You cannot vote yet")
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+You cannot vote yet
+\end{verbatim}
+
+\section{Python if/elif/else for Multiple Choices}
+
+\begin{verbatim}
+marks = 75
+if marks >= 90:
+    print("Grade: A+")
+elif marks >= 80:
+    print("Grade: A")
+elif marks >= 70:
+    print("Grade: B+")
+else:
+    print("Grade: C or below")
+\end{verbatim}
+
+\subsection{Real-Life Analogy: Deciding What to Wear}
+
+\begin{itemize}
+    \item If it is raining $\rightarrow$ wear raincoat  
+    \item Else if it is cold $\rightarrow$ wear sweater  
+    \item Else $\rightarrow$ wear T-shirt  
+\end{itemize}
+
+\section{Step-by-Step Diagram: Decision Making}
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (condition) [draw, diamond, fill=yellow!20, below of=start] {Is condition true?};
+\node (trueblock) [draw, rectangle, fill=orange!20, below left of=condition, xshift=-2cm] {Execute if True};
+\node (falseblock) [draw, rectangle, fill=orange!20, below right of=condition, xshift=2cm] {Execute if False};
+\node (end) [draw, ellipse, fill=green!20, below of=condition, yshift=-4cm] {End Program};
+\draw[->] (start) -- (condition);
+\draw[->] (condition.south west) -- (trueblock.north);
+\draw[->] (condition.south east) -- (falseblock.north);
+\draw[->] (trueblock.south east) -- (end.north);
+\draw[->] (falseblock.south west) -- (end.north);
+\end{tikzpicture}
+\end{center}
+
+\section{Mini-Project: Exam Result Checker}
+
+Create a Python program that asks the user for their marks and prints if they passed or failed:
+
+\begin{verbatim}
+marks = int(input("Enter your marks: "))
+if marks >= 40:
+    print("You passed the exam!")
+else:
+    print("You failed the exam.")
+\end{verbatim}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Conditional statements allow programs to make decisions.
+    \item Use \texttt{if}, \texttt{else}, and \texttt{elif} to handle different conditions.
+    \item Indentation is important in Python to define blocks of code.
+    \item Decision-making makes programs dynamic and interactive.
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is a conditional statement?
+    \item Which Python keyword is used for multiple choices?
+    \item What happens if an if-condition is false and there is no else block?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write a Python program that prints "Even" if a number is even, otherwise "Odd".
+    \item Explain the difference between if/else and if/elif/else.
+    \item Why is indentation important in Python?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a program that asks the user for the weather and gives a clothing suggestion.
+    \item Modify the exam result program to also print grades (A+, A, B+, etc.) using if/elif/else.
+    \item Test your program with different inputs to check all branches of decisions.
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:} 
+\begin{itemize}
+    \item Students learn to use if, else, and elif statements.
+    \item Students understand decision-making in programs.
+    \item Students can create interactive Python programs with multiple outcomes.
+\end{itemize}
+
+\textbf{Teaching Tips:} 
+\begin{itemize}
+    \item Use real-life decision examples in class.
+    \item Demonstrate programs with different inputs to show branching.
+\end{itemize}
+
+\textbf{Assessment:} 
+\begin{itemize}
+    \item Check correctness of decision-making programs.
+    \item Observe student understanding of conditions and branching.
+\end{itemize}
+}

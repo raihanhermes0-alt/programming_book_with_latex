@@ -1,0 +1,184 @@
+\chapter{Variables and Data in Real Life}
+
+\section{Introduction: The Messy Wallet Problem}
+
+It is Friday afternoon. Amina opens a small wallet and pulls out a handful of crumpled bank notes and coins. This month, Amina received $1000$ Taka as pocket money. Throughout the week, money went toward bus fare, school snacks, and a notebook.
+
+Amina counts the remaining cash manually, sighs, and thinks, \textit{"Every week I have to recalculate everything by hand. If only my pocket money could keep track of itself!"}
+
+In programming, we solve this problem using **variables**.
+
+\begin{definition}[Variable]
+A variable is a named storage container in a computer's memory that holds a piece of information. Just like a labeled box in your room holds your shoes or books, a variable holds data that your program can use, change, or look at later.
+\end{definition}
+
+\section{A Real-Life Student Problem: Tracking Pocket Money}
+
+To help Amina, let's look at how we store information in programming containers. Instead of writing numbers on loose paper, we give each piece of data a clear name.
+
+\begin{itemize}
+    \item \texttt{total\_money = 1000} (The starting money)
+    \item \texttt{transport = 400} (Money spent on the bus)
+    \item \texttt{snacks = 300} (Money spent on food)
+\end{itemize}
+
+By placing these values into variables, Amina's computer can instantly calculate the remaining balance using a simple mathematical expression:
+
+\[
+\text{remaining} = \text{total\_money} - (\text{transport} + \text{snacks})
+\]
+
+Let us see how this looks in Python code.
+
+\subsection{Python Code Example: Calculating Remaining Money}
+
+\begin{lstlisting}
+# Amina's Pocket Money Tracker
+total_money = 1000
+transport = 400
+snacks = 300
+
+# Calculate total expenses and remaining balance
+total_spent = transport + snacks
+remaining_money = total_money - total_spent
+
+print("Total Spent:", total_spent, "Taka")
+print("Remaining Money:", remaining_money, "Taka")
+\end{lstlisting}
+
+\begin{pythonoutput}
+Total Spent: 705 Taka -- wait, 400 + 300 is 700! Let's correct output:
+Total Spent: 700 Taka
+Remaining Money: 300 Taka
+\end{pythonoutput}
+
+\begin{lstlisting}
+# Correction for exact output match:
+total_money = 1000
+transport = 400
+snacks = 300
+
+total_spent = transport + snacks
+remaining_money = total_money - total_spent
+
+print("Total Spent:", total_spent, "Taka")
+print("Remaining Money:", remaining_money, "Taka")
+\end{lstlisting}
+
+\begin{pythonoutput}
+Total Spent: 700 Taka
+Remaining Money: 300 Taka
+\end{pythonoutput}
+
+\textbf{Explanation of the Code:}
+\begin{itemize}
+    \item \texttt{total\_money = 1000} creates a variable named \texttt{total\_money} and stores the number $1000$ inside it.
+    \item \texttt{total\_spent = transport + snacks} adds the two expense variables together and stores the sum in a new variable.
+    \item \texttt{print(...)} displays the final calculated text and numbers on the screen.
+\end{itemize}
+
+---
+
+\section{Using Different Data Types}
+
+Variables do not only store numbers. They can hold different kinds of information depending on what you need. In programming, these categories are called **data types**.
+
+\begin{definition}[Data Type]
+A data type classifies the kind of value a variable holds—such as numbers, text characters, or true/false statements.
+\end{definition}
+
+\subsection{Real-Life Analogy: The Student Notebook}
+Think of your school notebook as a collection of different pages:
+\begin{itemize}
+    \item \textbf{Page numbers} store whole numbers $\rightarrow$ \textbf{Integer} data type (e.g., \texttt{age = 16}).
+    \item \textbf{Subject headings} store words and sentences $\rightarrow$ \textbf{String} data type (e.g., \texttt{subject = "Mathematics"}).
+    \item \textbf{Assignment checkboxes} store whether a task is finished or not $\rightarrow$ \textbf{Boolean} data type (e.g., \texttt{is\_homework\_done = True}).
+\end{itemize}
+
+\section{Step-by-Step Diagram: Variable Usage Workflow}
+
+Here is how data flows through variables when Amina runs a tracking program:
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.8cm]
+\node (input) [io] {Input: Amina's Pocket Money Details};
+\node (assign) [process, below of=input] {Assign values to variables};
+\node (process) [process, below of=assign] {Calculate remaining money};
+\node (output) [io, below of=process] {Output: Remaining Balance};
+\draw[arrow] (input) -- (assign);
+\draw[arrow] (assign) -- (process);
+\draw[arrow] (process) -- (output);
+\end{tikzpicture}
+\end{center}
+
+\section{Changing (Updating) Variables}
+
+One of the most powerful features of variables is that their values can **change** while the program runs.
+
+For example, next week bus fares might go up:
+\begin{itemize}
+    \item Monday transport cost: \texttt{transport = 450} $\rightarrow$ remaining money updates automatically.
+    \item Tuesday transport cost: \texttt{transport = 400} $\rightarrow$ new remaining money is calculated.
+\end{itemize}
+
+\begin{definition}[Variable Update]
+Updating a variable means replacing its old value with a new value using the assignment operator (\texttt{=}).
+\end{definition}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item \textbf{Variables} act as named containers for storing data in computer memory.
+    \item \textbf{Data types} tell Python whether a variable holds numbers, text, or boolean states.
+    \item \textbf{Variables can be updated} whenever information changes during program execution.
+    \item Variables make programs flexible so the same code can handle different data.
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is a variable in programming?
+    \item Name three common data types a variable can hold.
+    \item What does it mean to update a variable?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Explain how Amina uses variables to avoid manual calculations.
+    \item Give a real-life example of when you would use a boolean variable.
+    \item Why are meaningful variable names important for programmers?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a Python variable list tracking your own weekly expenses (\texttt{bus\_fare}, \texttt{lunch}, \texttt{stationery}).
+    \item Create a table with three variables: \texttt{books\_read}, \texttt{hours_studied}, and \texttt{snacks\_eaten}, and assign realistic sample values.
+    \item Identify what data type each of your school subjects or personal details would be stored in.
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}
+\begin{itemize}
+    \item Students understand variables as named containers for information.
+    \item Students recognize basic data types in daily life.
+    \item Students can update variables to track changing values.
+\end{itemize}
+
+\textbf{Teaching Tips:}
+\begin{itemize}
+    \item Use wallets, notebooks, and snack tracking as physical analogies.
+    \item Show step-by-step calculation using variables on the white board.
+\end{itemize}
+
+\textbf{Assessment:}
+\begin{itemize}
+    \item Ask students to create variable tables for their daily tasks.
+    \item Have students identify input, process, and output stages using variables.
+\end{itemize}
+}

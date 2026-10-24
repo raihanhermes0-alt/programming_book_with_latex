@@ -1,0 +1,170 @@
+\chapter{Object-Oriented Programming in Python: Classes and Objects}
+
+\section{Introduction: Real-Life Hook}
+
+Imagine your school has multiple students. Each student has:
+
+\begin{itemize}
+    \item Name  
+    \item Age  
+    \item Grade  
+\end{itemize}
+
+Instead of creating separate lists for each attribute, \textbf{OOP lets us create a ``Student'' blueprint}. Each student becomes an \textbf{object} of this blueprint (class), making programs \textbf{organized and reusable}.
+
+\section{Concept: What is a Class and an Object?}
+
+\begin{definition}{Class}
+A \textbf{class} is a blueprint for creating objects. It defines attributes (data) and methods (functions) that each object will have.
+\end{definition}
+
+\begin{definition}{Object}
+An \textbf{object} is an instance of a class. Each object has the attributes and methods defined by its class.
+\end{definition}
+
+\section{Creating a Class}
+
+\begin{verbatim}
+class Student:
+    def __init__(self, name, age, grade):
+        self.name = name
+        self.age = age
+        self.grade = grade
+
+    def greet(self):
+        print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+\end{verbatim}
+
+- \texttt{\_\_init\_\_} is the \textbf{constructor}, automatically called when creating an object  
+- \texttt{self} refers to the object itself  
+
+\section{Creating Objects}
+
+\begin{verbatim}
+# Creating student objects
+student1 = Student("Amina", 15, "9th")
+student2 = Student("Rafi", 14, "8th")
+
+# Access attributes
+print(student1.name)  # Amina
+print(student2.grade) # 8th
+
+# Call methods
+student1.greet()
+student2.greet()
+\end{verbatim}
+
+\section{Modifying Object Attributes}
+
+\begin{verbatim}
+student1.grade = "10th"
+print(student1.grade)  # 10th
+\end{verbatim}
+
+- Object attributes can be updated individually  
+
+\section{Mini-Project: Student Database}
+
+Create a program to store multiple students and print their details:
+
+\begin{verbatim}
+class Student:
+    def __init__(self, name, age, grade):
+        self.name = name
+        self.age = age
+        self.grade = grade
+
+    def display(self):
+        print(f"{self.name}, Age: {self.age}, Grade: {self.grade}")
+
+students = [
+    Student("Amina", 15, "9th"),
+    Student("Rafi", 14, "8th"),
+    Student("Sadia", 16, "10th")
+]
+
+for student in students:
+    student.display()
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+Amina, Age: 15, Grade: 9th
+Rafi, Age: 14, Grade: 8th
+Sadia, Age: 16, Grade: 10th
+\end{verbatim}
+
+\section{Step-by-Step Diagram: Class and Object Flow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (class) [draw, rectangle, fill=yellow!20] {Define Class (Student)};
+\node (object1) [draw, ellipse, fill=green!20, below left of=class, xshift=-2.5cm, yshift=-1cm] {Object student1};
+\node (object2) [draw, ellipse, fill=green!20, below right of=class, xshift=2.5cm, yshift=-1cm] {Object student2};
+\node (method) [draw, rectangle, fill=orange!20, below of=class, yshift=-4cm] {Call Method: greet / display};
+\draw[->] (class) -- (object1);
+\draw[->] (class) -- (object2);
+\draw[->] (object1) -- (method);
+\draw[->] (object2) -- (method);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Classes are \textbf{blueprints}; objects are \textbf{instances}  
+    \item \texttt{\_\_init\_\_} initializes object attributes  
+    \item Methods define actions objects can perform  
+    \item Object attributes can be accessed and modified individually  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is a class in Python?  
+    \item What is an object?  
+    \item What is the purpose of \texttt{\_\_init\_\_}?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Create a class \texttt{Car} with attributes \texttt{brand}, \texttt{model}, and \texttt{year}.  
+    \item Write a method \texttt{info()} to print car details.  
+    \item How do you create multiple objects of the same class?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a class \texttt{Book} with attributes \texttt{title}, \texttt{author}, and \texttt{pages}. Make a method to display book info and create 3 book objects.  
+    \item Modify the \texttt{Student} class to include a method \texttt{promote()} that increases grade by one. Test it for multiple students.  
+    \item Create a program that stores employees with name, position, and salary. Loop through objects and display each employee’s details.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students understand classes, objects, attributes, and methods  
+    \item Students can create multiple objects and access their data  
+    \item Students can write simple methods and modify attributes  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Use real-life examples like students, cars, books, employees  
+    \item Start with one class and one object, then expand to multiple objects  
+    \item Demonstrate calling methods and modifying attributes live  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correct creation of classes and objects  
+    \item Observe understanding of methods and attribute manipulation  
+\end{itemize}
+}

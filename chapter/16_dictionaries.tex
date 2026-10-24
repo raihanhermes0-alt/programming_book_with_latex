@@ -1,0 +1,194 @@
+\chapter{Dictionaries in Python: Key-Value Data Storage}
+
+\section{Introduction: Real-Life Hook}
+
+Students often deal with pairs of information:
+
+\begin{itemize}
+    \item Student name $\rightarrow$ roll number  
+    \item Phonebook: name $\rightarrow$ phone number  
+    \item Grocery items $\rightarrow$ price  
+\end{itemize}
+
+Python’s \textbf{dictionary} stores data as \textbf{key-value pairs}, making it easier to look up information quickly.
+
+\section{Concept: What is a Dictionary?}
+
+\begin{definition}{Dictionary}
+A \textbf{dictionary} is a collection of key-value pairs in Python. Each key is unique, and it is used to access its corresponding value.
+\end{definition}
+
+\subsection{Creating a Dictionary}
+
+\begin{verbatim}
+student = {
+    "name": "Amina",
+    "roll": 12,
+    "marks": 85
+}
+\end{verbatim}
+
+- Curly braces \{\} are used  
+- Each entry is a \textbf{key: value} pair  
+- Keys are unique; values can be repeated
+
+\subsection{Accessing Values}
+
+\begin{verbatim}
+print(student["name"])  # Amina
+print(student["marks"]) # 85
+\end{verbatim}
+
+\subsection{Updating Values}
+
+\begin{verbatim}
+student["marks"] = 90
+print(student)  # {'name': 'Amina', 'roll': 12, 'marks': 90}
+\end{verbatim}
+
+\subsection{Adding New Key-Value Pairs}
+
+\begin{verbatim}
+student["age"] = 15
+print(student)
+\end{verbatim}
+
+\subsection{Removing Key-Value Pairs}
+
+\begin{verbatim}
+del student["roll"]
+print(student)
+\end{verbatim}
+
+\section{Looping Through a Dictionary}
+
+\begin{verbatim}
+student = {"name": "Amina", "marks": 90, "age": 15}
+
+# Loop through keys
+for key in student:
+    print(key, ":", student[key])
+
+# Loop through key-value pairs
+for key, value in student.items():
+    print(key, "->", value)
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+name : Amina
+marks : 90
+age : 15
+name -> Amina
+marks -> 90
+age -> 15
+\end{verbatim}
+
+\section{Nested Dictionaries}
+
+\begin{verbatim}
+students = {
+    "s1": {"name": "Amina", "marks": 90},
+    "s2": {"name": "Rafi", "marks": 85}
+}
+
+print(students["s1"]["name"])  # Amina
+\end{verbatim}
+
+- Dictionaries can contain other dictionaries for complex data
+
+\section{Mini-Project: Phonebook Program}
+
+Create a program to store phone numbers and look them up:
+
+\begin{verbatim}
+phonebook = {
+    "Amina": "017XXXXXXXX",
+    "Rafi": "018XXXXXXXX",
+    "Sadia": "019XXXXXXXX"
+}
+
+name = input("Enter a name to search: ")
+if name in phonebook:
+    print("Phone number:", phonebook[name])
+else:
+    print("Name not found")
+\end{verbatim}
+
+\section{Step-by-Step Diagram: Dictionary Lookup Flow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (input) [draw, rectangle, fill=yellow!20, below of=start] {Get Key from User};
+\node (check) [draw, diamond, fill=orange!20, below of=input] {Key Exists?};
+\node (yes) [draw, rectangle, fill=yellow!20, below left of=check, xshift=-2cm] {Print Value};
+\node (no) [draw, rectangle, fill=yellow!20, below right of=check, xshift=2cm] {Print "Not Found"};
+\node (end) [draw, ellipse, fill=green!20, below of=check, yshift=-3cm] {End Program};
+\draw[->] (start) -- (input);
+\draw[->] (input) -- (check);
+\draw[->] (check.west) -| node[near start, above] {Yes} (yes.north);
+\draw[->] (check.east) -| node[near start, above] {No} (no.north);
+\draw[->] (yes.south) |- (0,-7) -| (end.north);
+\draw[->] (no.south) |- (0,-7) -| (end.north);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Dictionaries store \textbf{key-value pairs} for fast lookup  
+    \item Keys are unique; values can be anything  
+    \item Dictionaries can be \textbf{nested} for structured data  
+    \item Loops can iterate over keys, values, or items  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is a dictionary in Python?  
+    \item How do you access a value using a key?  
+    \item Can keys in a dictionary be repeated?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Create a dictionary to store 3 students’ marks and print each student’s marks.  
+    \item How do you delete a key-value pair from a dictionary?  
+    \item Explain the difference between a list and a dictionary.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a dictionary of 5 countries and their capitals. Allow the user to look up a capital by country name.  
+    \item Make a nested dictionary to store 2 students, each with name, age, and marks. Print their information using loops.  
+    \item Create a dictionary of items and prices. Calculate the total price of all items using a loop.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students understand dictionary creation, key-value access, and updates  
+    \item Students can use loops to iterate through dictionaries  
+    \item Students can create nested dictionaries for complex data  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Use real-life examples like phonebooks, students’ marks, grocery prices  
+    \item Demonstrate dictionary lookup and updates live in class  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correctness of dictionary operations  
+    \item Observe understanding of keys, values, loops, and nested dictionaries  
+\end{itemize}
+}

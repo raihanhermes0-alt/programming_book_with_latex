@@ -1,0 +1,175 @@
+\chapter{Exception Handling in Python: Errors and Safe Programming}
+
+\section{Introduction: Real-Life Hook}
+
+Students encounter mistakes every day:  
+
+\begin{itemize}
+    \item Forgetting homework or submitting the wrong file  
+    \item Dividing by zero in math homework  
+    \item Searching for a contact that does not exist  
+\end{itemize}
+
+Similarly, \textbf{programs can have errors}. Python provides \textbf{exception handling} to \textbf{catch errors and prevent programs from crashing}.
+
+\section{Concept: Errors and Exceptions}
+
+\begin{definition}{Exception}
+An \textbf{exception} is an error detected during program execution that stops the program unless handled.
+\end{definition}
+
+\subsection{Example: Division by Zero}
+
+\begin{verbatim}
+num = 5
+den = 0
+print(num / den)  # This raises a ZeroDivisionError
+\end{verbatim}
+
+- This will crash the program if not handled  
+
+\section{Try and Except Block}
+
+\begin{verbatim}
+try:
+    num = 5
+    den = 0
+    print(num / den)
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+\end{verbatim}
+
+- \texttt{try} contains code that might raise an error  
+- \texttt{except} handles the error gracefully  
+
+\subsection{Catching Multiple Exceptions}
+
+\begin{verbatim}
+try:
+    x = int(input("Enter a number: "))
+    y = int(input("Enter another number: "))
+    print(x / y)
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+except ValueError:
+    print("Invalid input, enter numbers only!")
+\end{verbatim}
+
+- Multiple \texttt{except} blocks handle different types of errors  
+
+\section{Using Else and Finally}
+
+\begin{verbatim}
+try:
+    num = int(input("Enter a number: "))
+    print("Number squared:", num ** 2)
+except ValueError:
+    print("Invalid input!")
+else:
+    print("Input was valid.")
+finally:
+    print("This runs no matter what.")
+\end{verbatim}
+
+- \texttt{else} runs if no exception occurs  
+- \texttt{finally} always runs (e.g., closing a file or cleaning up)  
+
+\section{Mini-Project: Safe Division Program}
+
+Create a program that takes two numbers from the user and divides them safely:
+
+\begin{verbatim}
+try:
+    x = float(input("Enter numerator: "))
+    y = float(input("Enter denominator: "))
+    result = x / y
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+except ValueError:
+    print("Invalid input! Enter numbers only.")
+else:
+    print("Result:", result)
+finally:
+    print("Program ended safely.")
+\end{verbatim}
+
+\section{Step-by-Step Diagram: Exception Handling Flow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (try) [draw, rectangle, fill=yellow!20, below of=start] {Execute Code in Try Block};
+\node (exception) [draw, diamond, fill=orange!20, below of=try] {Exception Occurred?};
+\node (except) [draw, rectangle, fill=yellow!20, below left of=exception, xshift=-2cm] {Handle Exception in Except Block};
+\node (else) [draw, rectangle, fill=yellow!20, below right of=exception, xshift=2cm] {Run Else Block if No Exception};
+\node (finally) [draw, rectangle, fill=orange!20, below of=exception, yshift=-3cm] {Finally Block Always Executes};
+\node (end) [draw, ellipse, fill=green!20, below of=finally] {End Program};
+\draw[->] (start) -- (try);
+\draw[->] (try) -- (exception);
+\draw[->] (exception.west) -| node[near start, above] {Yes} (except.north);
+\draw[->] (exception.east) -| node[near start, above] {No} (else.north);
+\draw[->] (except.south) |- (0,-6.5) -| (finally.north);
+\draw[->] (else.south) |- (0,-6.5) -| (finally.north);
+\draw[->] (finally.south) -- (end.north);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Exceptions are runtime errors that can stop programs  
+    \item \texttt{try} block contains risky code  
+    \item \texttt{except} block handles errors gracefully  
+    \item \texttt{else} runs if no exception occurs; \texttt{finally} always runs  
+    \item Common exceptions: \texttt{ZeroDivisionError}, \texttt{ValueError}, \texttt{FileNotFoundError}  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is an exception in Python?  
+    \item Name two common exceptions.  
+    \item What is the purpose of a \texttt{finally} block?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write code to safely divide two numbers entered by the user.  
+    \item Explain the difference between \texttt{except} and \texttt{finally}.  
+    \item How can you catch multiple exceptions in a program?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Write a program to open a file and read its content safely. Handle \texttt{FileNotFoundError}.  
+    \item Create a program that asks the user for an integer and prints its square. Handle \texttt{ValueError} for invalid input.  
+    \item Make a mini-calculator that can add, subtract, multiply, or divide two numbers safely with exception handling.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students understand what exceptions are and how to handle them  
+    \item Students can use \texttt{try}, \texttt{except}, \texttt{else}, and \texttt{finally} to write safe programs  
+    \item Students can handle common runtime errors gracefully  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Demonstrate each exception with a real-life analogy (e.g., dividing by zero)  
+    \item Encourage experimenting with multiple types of exceptions  
+    \item Show how \texttt{finally} can be used to clean up resources (like closing files)  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correct usage of try-except-else-finally blocks  
+    \item Observe understanding of exception types and safe programming practices  
+\end{itemize}
+}

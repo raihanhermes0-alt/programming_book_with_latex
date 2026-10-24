@@ -1,0 +1,234 @@
+\chapter{Error Handling: Dealing with Mistakes Gracefully}
+
+\section{Introduction: Real-Life Hook}
+
+Imagine a student writing an exam.
+
+If the student makes a small mistake:
+\begin{itemize}
+    \item The teacher does not stop the exam
+    \item The student continues answering other questions
+\end{itemize}
+
+But if a program makes a mistake:
+\begin{itemize}
+    \item It suddenly stops
+    \item It shows a scary error message
+\end{itemize}
+
+Can we teach programs to handle mistakes calmly?
+
+Yes — using \textbf{Error Handling}.
+
+\section{What Is an Error?}
+
+\begin{definition}{Error}
+An error is a problem in a program that stops normal execution.
+\end{definition}
+
+Examples:
+\begin{itemize}
+    \item Dividing by zero
+    \item Opening a missing file
+    \item Writing wrong data type
+\end{itemize}
+
+\section{Why Error Handling Is Important}
+
+Without error handling:
+\begin{itemize}
+    \item Program crashes
+    \item User feels confused
+\end{itemize}
+
+With error handling:
+\begin{itemize}
+    \item Program continues safely
+    \item User gets friendly messages
+\end{itemize}
+
+\section{Types of Errors (Brief)}
+
+\begin{itemize}
+    \item Syntax errors
+    \item Runtime errors
+    \item Logical errors
+\end{itemize}
+
+This chapter focuses on \textbf{runtime errors}.
+
+\section{Try and Except Blocks}
+
+Python uses \texttt{try-except} to handle errors.
+
+\begin{verbatim}
+try:
+    number = int(input("Enter a number: "))
+    print(10 / number)
+except:
+    print("Something went wrong")
+\end{verbatim}
+
+If error occurs, program jumps to \texttt{except}.
+
+\section{Handling Specific Errors}
+
+\begin{verbatim}
+try:
+    x = int(input("Enter number: "))
+    y = 10 / x
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+except ValueError:
+    print("Please enter a valid number")
+\end{verbatim}
+
+\section{Using Else Block}
+
+\begin{verbatim}
+try:
+    num = int(input("Enter number: "))
+    print(100 / num)
+except:
+    print("Error occurred")
+else:
+    print("Calculation successful")
+\end{verbatim}
+
+Else runs when no error occurs.
+
+\section{Finally Block}
+
+\begin{verbatim}
+try:
+    file = open("data.txt", "r")
+    print(file.read())
+except:
+    print("File not found")
+finally:
+    print("Program finished")
+\end{verbatim}
+
+Finally always runs.
+
+\section{Real-Life Example: ATM Machine}
+
+ATM behavior:
+\begin{itemize}
+    \item Wrong PIN $\rightarrow$ shows message
+    \item Correct PIN $\rightarrow$ allows transaction
+    \item Machine never crashes
+\end{itemize}
+
+Programs should behave like ATMs.
+
+\section{Mini-Project: Safe Calculator}
+
+\begin{verbatim}
+try:
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+    print(a / b)
+except ZeroDivisionError:
+    print("Division by zero not allowed")
+except ValueError:
+    print("Invalid input")
+else:
+    print("Calculation completed")
+\end{verbatim}
+
+Students learn:
+\begin{itemize}
+    \item Safe input handling
+    \item Friendly error messages
+\end{itemize}
+
+\section{Diagram: Error Handling Flow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=2.5cm]
+\node (try) [draw, rectangle, fill=yellow!20, minimum height=1cm] {Try Block};
+\node (error) [draw, diamond, aspect=2, fill=green!20, below of=try, yshift=-0.5cm] {Error?};
+\node (except) [draw, rectangle, fill=red!20, right of=error, xshift=2cm, minimum height=1cm] {Except Block};
+\node (else) [draw, rectangle, fill=blue!20, left of=error, xshift=-2cm, minimum height=1cm] {Else Block};
+
+\draw[->] (try) -- (error);
+\draw[->] (error) -- node[above]{Yes} (except);
+\draw[->] (error) -- node[above]{No} (else);
+\end{tikzpicture}
+\end{center}
+
+\section{Best Practices}
+
+\begin{itemize}
+    \item Handle specific errors
+    \item Use clear error messages
+    \item Avoid empty except blocks
+\end{itemize}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Errors stop programs
+    \item \texttt{try-except} handles errors
+    \item \texttt{else} runs when no error
+    \item \texttt{finally} always runs
+\end{itemize}
+
+\section{Common Beginner Mistakes}
+
+\begin{itemize}
+    \item Using except without knowing error
+    \item Hiding errors silently
+    \item Ignoring error messages
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\subsection{Very Short Questions}
+
+\begin{enumerate}
+    \item What is an error?
+    \item Why is error handling important?
+    \item Which block always runs?
+\end{enumerate}
+
+\subsection{Short Answer Questions}
+
+\begin{enumerate}
+    \item Explain try-except using a real-life example.
+    \item Difference between else and finally.
+    \item Why should we avoid empty except?
+\end{enumerate}
+
+\subsection{Activity-Based Exercises}
+
+\begin{enumerate}
+    \item Create a safe division program.
+    \item Handle missing file error.
+    \item Write a program that accepts only positive numbers.
+\end{enumerate}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives}
+\begin{itemize}
+    \item Students understand runtime errors
+    \item Students use try-except blocks
+    \item Students build crash-free programs
+\end{itemize}
+
+\textbf{Teaching Tips}
+\begin{itemize}
+    \item Compare with exam mistakes
+    \item Demonstrate crash vs safe program
+    \item Encourage user-friendly messages
+\end{itemize}
+
+\textbf{Assessment}
+\begin{itemize}
+    \item Correct exception handling
+    \item Clear error messages
+\end{itemize}
+}

@@ -1,0 +1,194 @@
+\chapter{What Is Programming Really?}
+
+\section{Introduction: The Messy Desk Problem}
+
+It is 4:00 PM on a Tuesday. Alex walks into the bedroom and drops a heavy backpack on the floor. On the desk, there is a messy pile of math homework, a physics assignment due tomorrow, and a sticky note reminding Alex to go to the grocery store for milk. At the same time, Maya sends a text message: \textit{"Hey Alex, want to play an online game?"}
+
+Alex looks at the mess, feels overwhelmed, and thinks, \textit{"If I just start playing, my math homework won't get done. If I study first, I might miss out. I need a clear plan!"}
+
+Without knowing it, Alex is about to become a programmer.
+
+Programming is often thought of as writing secret code on a dark computer screen. But at its heart, programming is simply **problem-solving**. It is the art of taking a messy, confusing problem, breaking it down into tiny, orderly steps, and writing them down so clearly that even a machine can follow them without getting confused.
+
+\begin{definition}[Programming]
+Programming is the process of giving step-by-step instructions to a computer to solve a specific problem.
+\end{definition}
+
+\section{Planning the Afternoon: What is an Algorithm?}
+
+To solve the afternoon chaos, Alex takes out a notebook and writes down a plan:
+\begin{enumerate}
+    \item Arrive home and drop the bag.
+    \item Drink a glass of water and eat a snack.
+    \item Study math for 45 minutes.
+    \item Take a 15-minute break.
+    \item Go to the grocery store for milk.
+\end{enumerate}
+
+This exact sequence of steps is called an **algorithm**.
+
+\begin{definition}[Algorithm]
+An algorithm is a finite sequence of clear, step-by-step instructions used to solve a problem or complete a task.
+\end{definition}
+
+In this setup, Alex acts as the ``processor'' following the instructions. But what if unexpected things happen—like discovering it is already 5:00 PM and the grocery store is closing? Alex must update the plan using a **decision**.
+
+\subsection{Visualizing Decisions with a Flowchart}
+
+When plans change, our logic changes too. We can draw this using a flowchart.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[node distance=2cm]
+        \node (start) [startstop] {Start};
+        \node (home) [io, below of=start] {Arrive Home};
+        \node (snack) [process, below of=home] {Eat Snack};
+        \node (decide) [decision, below of=snack, yshift=-0.8cm] {Is it 5:00 PM?};
+        \node (study) [process, below of=decide, yshift=-0.8cm] {Study Math};
+        \node (store) [process, right of=decide, xshift=3.5cm] {Go to Store};
+        \node (end) [startstop, below of=study] {End};
+
+        \draw [arrow] (start) -- (home);
+        \draw [arrow] (home) -- (snack);
+        \draw [arrow] (snack) -- (decide);
+        \draw [arrow] (decide) -- node[anchor=east] {No} (study);
+        \draw [arrow] (decide) -- node[anchor=south] {Yes} (store);
+        \draw [arrow] (study) -- (end);
+        \draw [arrow] (store) |- (end);
+    \end{tikzpicture}
+    \caption{Flowchart for Alex's Afternoon Decision Making}
+    \label{fig:afternoon_flowchart}
+\end{figure}
+
+\subsection{Python Code Example: Printing a Daily Schedule}
+
+Let us see how Alex can tell a computer to display this daily plan using Python.
+
+\begin{lstlisting}
+# Alex's Daily Planner Program
+print("Step 1: Arrive home from school.")
+print("Step 2: Eat a healthy snack.")
+print("Step 3: Study math for 45 minutes.")
+print("Step 4: Take a short break.")
+print("Afternoon plan complete!")
+\end{lstlisting}
+
+\begin{pythonoutput}
+Step 1: Arrive home from school.
+Step 2: Eat a healthy snack.
+Step 3: Study math for 45 minutes.
+Step 4: Take a short break.
+Afternoon plan complete!
+\end{pythonoutput}
+
+\textbf{Explanation of the Code:}
+\begin{itemize}
+    \item Lines starting with \texttt{\#} are **comments**. Python ignores them; they are just notes for human readers.
+    \item \texttt{print(...)} is a built-in Python command that displays whatever text is inside the quotation marks onto the computer screen.
+\end{itemize}
+
+---
+
+\section{Programming Without a Computer}
+
+You do not need an electronic computer to practice programming. You use programming logic every day in your normal routines:
+\begin{itemize}
+    \item \textbf{Cooking a recipe:} Following ingredients and steps in order (An Algorithm).
+    \item \textbf{Packing your school bag:} Checking tomorrow's timetable and packing books (Conditional logic).
+    \item \textbf{Brushing your teeth:} Repeating a brushing motion back and forth twenty times (A Loop).
+\end{itemize}
+
+\section{Real-Life Problem: Managing Pocket Money}
+
+Maya receives $500$ Taka as weekly pocket money. Maya wants to buy a book for $300$ Taka and save the rest. How does Maya calculate the remaining balance?
+
+\begin{itemize}
+    \item \textbf{Input:} Initial money = $500$, Book cost = $300$.
+    \item \textbf{Process:} Subtract the book cost from the initial money ($500 - 300$).
+    \item \textbf{Output:} Remaining balance = $200$ Taka.
+\end{itemize}
+
+Computers excel at performing calculations like this instantly. Let's write a short Python program for Maya's pocket money.
+
+\begin{lstlisting}
+# Maya's Pocket Money Calculator
+total_money = 500
+book_cost = 300
+
+remaining_money = total_money - book_cost
+print("Remaining Pocket Money:", remaining_money, "Taka")
+\end{lstlisting}
+
+\begin{pythonoutput}
+Remaining Pocket Money: 200 Taka
+\end{pythonoutput}
+
+\textbf{Explanation of the Code:}
+\begin{itemize}
+    \item \texttt{total\_money = 500} stores the number $500$ inside a storage container named \texttt{total\_money}.
+    \item \texttt{total\_money - book\_cost} subtracts the two numbers.
+    \item \texttt{print(...)} outputs the final calculated result to the screen.
+\end{itemize}
+
+---
+
+\section{The Input-Process-Output (IPO) Model}
+
+Almost every computer program—and every daily task—follows the **IPO Model**. It consists of three simple stages:
+
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|p{3cm}|p{6cm}|p{5cm}|}
+        \hline
+        \textbf{Component} & \textbf{Description} & \textbf{Real-Life Example} \\
+        \hline
+        \textbf{Input} & Raw data or information given to the system. & Typing \texttt{7:00 AM} into your phone alarm. \\
+        \hline
+        \textbf{Process} & The internal calculations or rules applied. & The phone's clock constantly checking the time. \\
+        \hline
+        \textbf{Output} & The final result shown to the user. & The phone ringing loudly at 7:00 AM. \\
+        \hline
+    \end{tabular}
+    \caption{The Input-Process-Output (IPO) Model}
+    \label{tab:ipo}
+\end{table}
+
+\subsection{Daily Example: Setting a Phone Alarm}
+
+When Alex sets a morning alarm, the phone acts as a tiny computer following an IPO loop.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[node distance=1.5cm]
+        \node (in) [io] {Input: Set alarm for 07:00 AM};
+        \node (pro1) [process, below of=in] {Process: Check current time};
+        \node (dec) [decision, below of=pro1, yshift=-0.8cm] {Is time 07:00 AM?};
+        \node (wait) [process, left of=dec, xshift=-2.5cm] {Wait / Loop};
+        \node (out) [io, below of=dec, yshift=-0.8cm] {Output: Alarm Rings!};
+
+        \draw [arrow] (in) -- (pro1);
+        \draw [arrow] (pro1) -- (dec);
+        \draw [arrow] (dec) -- node[anchor=south] {Yes} (out);
+        \draw [arrow] (dec) -| node[anchor=south] {No} (wait);
+        \draw [arrow] (wait) -- (pro1);
+    \end{tikzpicture}
+    \caption{Phone Alarm Logic Flow}
+    \label{fig:alarm_flow}
+\end{figure}
+
+\section{Why Computers Need Programmers}
+
+Computers are lightning-fast, but they are also completely ``blind and deaf'' on their own. A computer cannot think, feel, or decide what to do next without a human programmer. It simply executes instructions mechanically.
+
+If you give a computer bad instructions, it will make mistakes instantly. If you forget to tell a repeating task when to stop, the computer will loop forever (an infinite loop). Programming is how we bridge human creativity with machine speed!
+
+---
+
+\begin{exercise}
+\begin{enumerate}
+    \item Write down an everyday algorithm you follow every morning before leaving for school.
+    \item Explain the IPO model using the example of withdrawing money from an ATM machine.
+    \item What is the main difference between a human brain and a computer processor?
+\end{enumerate}
+\end{exercise}

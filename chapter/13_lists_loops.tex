@@ -1,0 +1,182 @@
+\chapter{More on Lists and Loops in Python}
+
+\section{Introduction: Real-Life Hook}
+
+Students often deal with multiple collections of items:
+
+\begin{itemize}
+    \item A class with multiple students, each having multiple subjects  
+    \item Grocery shopping list with items and their quantities  
+    \item Scores of students in different tests  
+\end{itemize}
+
+Python allows us to \textbf{nest lists} (lists within lists) and \textbf{loop through them efficiently}.
+
+\section{Concept: Nested Lists}
+
+\begin{definition}{Nested List}
+A \textbf{nested list} is a list that contains other lists as elements.
+\end{definition}
+
+\subsection{Example: Students’ Marks}
+
+\begin{verbatim}
+marks = [
+    [80, 70, 90],   # Student 1
+    [75, 85, 65],   # Student 2
+    [90, 95, 100]   # Student 3
+]
+
+print("Marks of Student 2:", marks[1])
+print("Second subject of Student 3:", marks[2][1])
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+Marks of Student 2: [75, 85, 65]
+Second subject of Student 3: 95
+\end{verbatim}
+
+- Use \textbf{double indexing} to access elements in nested lists  
+
+\section{Looping Through Nested Lists}
+
+\begin{verbatim}
+for i, student in enumerate(marks):
+    print("Student", i+1, "marks:")
+    for mark in student:
+        print(mark, end=" ")
+    print()
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+Student 1 marks: 80 70 90
+Student 2 marks: 75 85 65
+Student 3 marks: 90 95 100
+\end{verbatim}
+
+- Outer loop iterates through students  
+- Inner loop iterates through marks of each student  
+
+\section{Advanced List Operations}
+
+\subsection{Slicing Lists}
+
+\begin{verbatim}
+fruits = ["apple", "banana", "mango", "orange"]
+print(fruits[1:3])  # ['banana', 'mango']
+print(fruits[:2])   # ['apple', 'banana']
+print(fruits[2:])   # ['mango', 'orange']
+\end{verbatim}
+
+\subsection{List Functions and Methods}
+
+\begin{verbatim}
+numbers = [5, 2, 9, 1]
+print("Max:", max(numbers))
+print("Min:", min(numbers))
+print("Sum:", sum(numbers))
+numbers.sort()
+print("Sorted:", numbers)
+\end{verbatim}
+
+\section{Mini-Project: Student Scores Table}
+
+Create a program to store marks of 3 students in 3 subjects and print total marks:
+
+\begin{verbatim}
+students = [
+    [80, 70, 90],
+    [75, 85, 65],
+    [90, 95, 100]
+]
+
+for i, student in enumerate(students):
+    total = sum(student)
+    print("Total marks of Student", i+1, "=", total)
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+Total marks of Student 1 = 240
+Total marks of Student 2 = 225
+Total marks of Student 3 = 285
+\end{verbatim}
+
+\section{Step-by-Step Diagram: Nested Lists Loop Flow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (outer) [draw, rectangle, fill=yellow!20, below of=start] {Loop Through Outer List};
+\node (inner) [draw, rectangle, fill=orange!20, below of=outer] {Loop Through Inner List};
+\node (process) [draw, rectangle, fill=orange!20, below of=inner] {Process Each Element};
+\node (end) [draw, ellipse, fill=green!20, below of=process] {End Program};
+\draw[->] (start) -- (outer);
+\draw[->] (outer) -- (inner);
+\draw[->] (inner) -- (process);
+\draw[->] (process) -- (end);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Nested lists store lists inside lists for hierarchical data  
+    \item Double indexing accesses elements in nested lists  
+    \item Loops can be nested to iterate over complex lists  
+    \item Advanced operations: slicing, max, min, sum, sort  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is a nested list?  
+    \item How do you access the first element of a nested list?  
+    \item Name two list methods to manipulate numbers.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write a Python program to print the second subject marks of each student.  
+    \item Explain why nested loops are needed for nested lists.  
+    \item Give an example of a nested list in daily life.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Store marks of 4 students in 3 subjects each and print the average marks of each student.  
+    \item Create a list of lists representing a shopping list (item name and quantity) and print them.  
+    \item Make a program that sorts each student’s marks in ascending order using a loop.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students understand nested lists and double indexing  
+    \item Students can use nested loops to process complex lists  
+    \item Students can apply advanced list operations (slicing, max, min, sum, sort)  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Use real-life examples: students’ marks, shopping lists  
+    \item Demonstrate nested loops step-by-step  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correctness of nested list loops  
+    \item Observe understanding of list operations and slicing  
+\end{itemize}
+}

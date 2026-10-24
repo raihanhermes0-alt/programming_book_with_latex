@@ -1,0 +1,175 @@
+\chapter{Introduction to APIs and Python Requests}
+
+\section{Introduction: Real-Life Hook}
+
+Think about things students do online every day:
+
+\begin{itemize}
+    \item Checking weather on a phone app  
+    \item Seeing the latest news updates  
+    \item Searching for movies or books  
+\end{itemize}
+
+All these apps get information from \textbf{APIs (Application Programming Interfaces)}. Python allows us to \textbf{access these APIs easily} using the \texttt{requests} library.
+
+\section{Concept: What is an API?}
+
+\begin{definition}{API}
+An API (Application Programming Interface) is a \textbf{way for programs to communicate} with other programs or services over the internet.
+\end{definition}
+
+\begin{itemize}
+    \item Provides data in a \textbf{structured format (usually JSON)}  
+    \item Allows your program to get or send information without knowing how the service works internally  
+\end{itemize}
+
+\section{Setting Up Python Requests}
+
+Install the requests library:
+
+\begin{verbatim}
+pip install requests
+\end{verbatim}
+
+\section{Making a Simple API Request}
+
+Example: Fetch data from a public API:
+
+\begin{verbatim}
+import requests
+
+response = requests.get("https://api.coindesk.com/v1/bpi/currentprice.json")
+data = response.json()
+
+print("Bitcoin price in USD:", data["bpi"]["USD"]["rate"])
+\end{verbatim}
+
+- \texttt{requests.get(url)} sends a GET request  
+- \texttt{response.json()} parses JSON data  
+- You can access keys in the JSON to extract values  
+
+\section{Handling API Errors}
+
+\begin{verbatim}
+response = requests.get("https://api.coindesk.com/v1/bpi/currentprice.json")
+
+if response.status_code == 200:
+    data = response.json()
+    print("Bitcoin price:", data["bpi"]["USD"]["rate"])
+else:
+    print("Failed to get data. Status code:", response.status_code)
+\end{verbatim}
+
+- \texttt{status\_code} shows if the request succeeded (200 = OK)  
+- Always check for errors before processing data  
+
+\section{Mini-Project: Weather App}
+
+Concept:
+
+\begin{itemize}
+    \item User enters a city name  
+    \item Fetch weather data from an API  
+    \item Display temperature, description, and humidity  
+\end{itemize}
+
+Example using OpenWeatherMap API:
+
+\begin{verbatim}
+import requests
+
+api_key = "YOUR_API_KEY"
+city = input("Enter city name: ")
+
+url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+response = requests.get(url)
+
+if response.status_code == 200:
+    data = response.json()
+    temp = data["main"]["temp"]
+    desc = data["weather"][0]["description"]
+    humidity = data["main"]["humidity"]
+    print(f"Weather in {city}: {desc}, Temp: {temp}°C, Humidity: {humidity}%")
+else:
+    print("City not found or API error")
+\end{verbatim}
+
+- Students learn \textbf{user input, API request, JSON parsing, and displaying results}  
+
+\section{Step-by-Step Diagram: API Workflow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (request) [draw, rectangle, fill=yellow!20, below of=start] {Send HTTP Request to API};
+\node (response) [draw, rectangle, fill=orange!20, below of=request] {Receive JSON Response};
+\node (parse) [draw, rectangle, fill=yellow!20, below of=response] {Parse JSON Data};
+\node (display) [draw, rectangle, fill=orange!20, below of=parse] {Display Data to User};
+\node (end) [draw, ellipse, fill=green!20, below of=display] {End Program};
+\draw[->] (start) -- (request);
+\draw[->] (request) -- (response);
+\draw[->] (response) -- (parse);
+\draw[->] (parse) -- (display);
+\draw[->] (display) -- (end);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item API allows programs to \textbf{communicate and fetch data}  
+    \item \texttt{requests} library sends HTTP requests  
+    \item JSON is a common data format for APIs  
+    \item Always handle errors with \texttt{status\_code}  
+    \item Students can create apps like \textbf{weather, crypto price, or news apps}  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is an API?  
+    \item Name the Python library used to fetch API data.  
+    \item What does \texttt{status\_code} 200 mean?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write Python code to send a GET request to an API and print JSON keys.  
+    \item Explain why we need to parse JSON data from APIs.  
+    \item Give one real-life example of an API students use daily.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a Python app that fetches the latest news headlines from a public news API.  
+    \item Modify the weather app to show both Celsius and Fahrenheit temperatures.  
+    \item Build a simple cryptocurrency tracker app that shows the current price of Bitcoin and Ethereum.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students understand what APIs are and how they work  
+    \item Students can send GET requests and parse JSON responses  
+    \item Students can build simple real-world apps using API data  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Start with simple public APIs that don’t require keys  
+    \item Show students JSON structure and how to access keys  
+    \item Encourage students to experiment with different APIs  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correct API request and JSON parsing  
+    \item Observe data display and error handling in apps  
+\end{itemize}
+}

@@ -1,0 +1,163 @@
+\chapter{Repeating Tasks in Python: Loops}
+
+\section{Introduction: Real-Life Hook}
+
+Students repeat tasks every day:  
+
+\begin{itemize}
+    \item Brushing teeth every morning  
+    \item Practicing a musical instrument  
+    \item Counting items in a collection  
+\end{itemize}
+
+Python can repeat tasks automatically using \textbf{loops}, making programs shorter and more efficient.
+
+\section{Concept: Loops in Python}
+
+\begin{definition}{Loop}
+A \textbf{loop} is a sequence of instructions that repeats until a condition is met or for a specific number of times.
+\end{definition}
+
+\subsection{For Loop: Repeating a Fixed Number of Times}
+
+\begin{verbatim}
+# Print numbers 1 to 5
+for i in range(1, 6):
+    print(i)
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+1
+2
+3
+4
+5
+\end{verbatim}
+
+- \texttt{range(1,6)} generates numbers from 1 to 5.  
+- \texttt{i} is the loop variable that changes in each iteration.
+
+\subsection{While Loop: Repeating Until a Condition is True}
+
+\begin{verbatim}
+# Count from 1 to 5
+count = 1
+while count <= 5:
+    print(count)
+    count = count + 1
+\end{verbatim}
+
+Output is the same as the for loop.
+
+\section{Real-Life Analogy: Morning Routine}
+
+\begin{itemize}
+    \item Brush teeth $\rightarrow$ repeat for 2 minutes  
+    \item Jumping jacks $\rightarrow$ repeat 10 times  
+    \item Practice piano $\rightarrow$ repeat scales until 5 minutes pass  
+\end{itemize}
+
+\section{Step-by-Step Diagram: Loop Execution}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Loop};
+\node (condition) [draw, diamond, fill=yellow!20, below of=start] {Condition True?};
+\node (task) [draw, rectangle, fill=orange!20, below of=condition, yshift=-1cm] {Perform Task};
+\node (update) [draw, rectangle, fill=orange!20, right of=task, xshift=3cm] {Update Counter/Variable};
+\node (end) [draw, ellipse, fill=green!20, below of=task, yshift=-1.5cm] {End Loop};
+\draw[->] (start) -- (condition);
+\draw[->] (condition.south) -- node[midway, right] {Yes} (task.north);
+\draw[->] (task.east) -- (update.west);
+\draw[->] (update.north) |- (condition.east);
+\draw[->] (condition.west) -- ++(-1.5,0) |- node[near start, left] {No} (end.west);
+\end{tikzpicture}
+\end{center}
+
+\section{Mini-Project: Multiplication Table}
+
+Create a Python program that prints the multiplication table of a number:
+
+\begin{verbatim}
+num = int(input("Enter a number: "))
+for i in range(1, 11):
+    print(num, "x", i, "=", num * i)
+\end{verbatim}
+
+\section{Using Loops with Lists}
+
+Loops are especially useful when working with lists:
+
+\begin{verbatim}
+fruits = ["apple", "banana", "mango"]
+for fruit in fruits:
+    print("I like", fruit)
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+I like apple
+I like banana
+I like mango
+\end{verbatim}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Loops allow repetition of tasks in programs.  
+    \item Use \texttt{for} for a known number of iterations, \texttt{while} for condition-based repetition.  
+    \item Loop variables control iteration.  
+    \item Loops can be combined with lists for efficient processing.  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is a loop in Python?  
+    \item Which loop is used for a fixed number of repetitions?  
+    \item Name the Python function to generate a sequence of numbers for a for loop.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write a for loop that prints all even numbers from 2 to 10.  
+    \item Write a while loop that counts down from 5 to 1.  
+    \item Explain the difference between for and while loops.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a program that asks the user for 5 numbers and prints their sum using a loop.  
+    \item Use a loop to print all items in your favorite snack list.  
+    \item Modify the multiplication table program to print tables from 1 to 5.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students understand loops and their purpose.  
+    \item Students learn to use for and while loops in Python.  
+    \item Students can iterate over numbers and lists.  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Demonstrate both for and while loops.  
+    \item Encourage students to try modifying ranges and loop variables.  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correctness of loops and outputs.  
+    \item Observe understanding of loop repetition and variable updates.  
+\end{itemize}
+}

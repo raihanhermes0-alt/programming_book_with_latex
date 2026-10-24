@@ -1,0 +1,189 @@
+\chapter{Functions in Python: Reusable Blocks of Code}
+
+\section{Introduction: Real-Life Hook}
+
+Students use routines in daily life:  
+
+\begin{itemize}
+    \item Brushing teeth every morning  
+    \item Sending birthday wishes  
+    \item Calculating total marks  
+\end{itemize}
+
+Instead of repeating the same steps, we create \textbf{functions} in Python to \textbf{reuse code easily}.
+
+\section{Concept: What is a Function?}
+
+\begin{definition}{Function}
+A \textbf{function} is a block of code that performs a specific task. It can be reused multiple times in a program.
+\end{definition}
+
+\subsection{Defining a Function}
+
+\begin{verbatim}
+def greet():
+    print("Hello! Welcome to Python class")
+\end{verbatim}
+
+- \texttt{def} keyword defines the function  
+- \texttt{greet()} is the function name  
+- Indented block is the function body
+
+\subsection{Calling a Function}
+
+\begin{verbatim}
+greet()
+greet()
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+Hello! Welcome to Python class
+Hello! Welcome to Python class
+\end{verbatim}
+
+\section{Functions with Parameters}
+
+Functions can take input values (parameters):
+
+\begin{verbatim}
+def greet(name):
+    print("Hello,", name)
+
+greet("Amina")
+greet("Rafi")
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+Hello, Amina
+Hello, Rafi
+\end{verbatim}
+
+\section{Functions with Return Values}
+
+Functions can return values for later use:
+
+\begin{verbatim}
+def add(a, b):
+    return a + b
+
+result = add(5, 3)
+print("Sum is:", result)
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+Sum is: 8
+\end{verbatim}
+
+\section{Step-by-Step Diagram: Function Flow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (define) [draw, rectangle, fill=yellow!20, below of=start] {Define Function};
+\node (call) [draw, rectangle, fill=orange!20, below of=define] {Call Function};
+\node (execute) [draw, rectangle, fill=orange!20, below of=call] {Execute Function Body};
+\node (return) [draw, rectangle, fill=yellow!20, below of=execute] {Return Value (Optional)};
+\node (end) [draw, ellipse, fill=green!20, below of=return] {End Program};
+\draw[->] (start) -- (define);
+\draw[->] (define) -- (call);
+\draw[->] (call) -- (execute);
+\draw[->] (execute) -- (return);
+\draw[->] (return) -- (end);
+\end{tikzpicture}
+\end{center}
+
+\section{Mini-Project: Calculator with Functions}
+
+Create a program with functions for addition, subtraction, multiplication, and division:
+
+\begin{verbatim}
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    return a / b
+
+num1 = int(input("Enter first number: "))
+num2 = int(input("Enter second number: "))
+
+print("Addition:", add(num1, num2))
+print("Subtraction:", subtract(num1, num2))
+print("Multiplication:", multiply(num1, num2))
+print("Division:", divide(num1, num2))
+\end{verbatim}
+
+\section{Using Functions to Organize Code}
+
+- Functions help avoid repeating code  
+- Functions make programs readable and maintainable  
+- Complex programs are easier to debug when using functions
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item A function is a reusable block of code  
+    \item Functions can take parameters (inputs)  
+    \item Functions can return values  
+    \item Functions improve code readability, reduce repetition, and organize programs  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is a function in Python?  
+    \item Which keyword is used to define a function?  
+    \item Can a function return a value?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write a function to print your name.  
+    \item Write a function that takes two numbers and returns their product.  
+    \item Explain the difference between parameters and return values.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a program with functions for addition, subtraction, multiplication, and division of two numbers.  
+    \item Write a function that takes a list of numbers and returns the average.  
+    \item Modify the calculator program to use a menu inside a function to choose the operation.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students understand how to define and call functions.  
+    \item Students can pass parameters and return values.  
+    \item Students can organize programs into reusable blocks.  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Demonstrate simple functions first, then parameters and return values.  
+    \item Show real-life analogy: “function as a routine you do repeatedly”.  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check if students can create and call functions correctly.  
+    \item Observe understanding of parameters, return values, and code organization.  
+\end{itemize}
+}

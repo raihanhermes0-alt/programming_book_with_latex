@@ -1,0 +1,204 @@
+\chapter{More on Loops and Iteration in Python}
+
+\section{Introduction: Real-Life Hook}
+
+Students face repeated tasks in daily life:  
+
+\begin{itemize}
+    \item Checking homework for all subjects  
+    \item Sending the same message to multiple friends  
+    \item Calculating total marks for all students in a class  
+\end{itemize}
+
+In Python, loops help us \textbf{automate repeated tasks efficiently}, especially when working with \textbf{lists, strings, and dictionaries}.
+
+\section{Concept: Looping Through Lists, Strings, and Dictionaries}
+
+\subsection{Looping Through Lists}
+
+\begin{verbatim}
+fruits = ["apple", "banana", "mango"]
+for fruit in fruits:
+    print("I like", fruit)
+\end{verbatim}
+
+- Loops repeat an action for each element in the list  
+
+\subsection{Looping Through Strings}
+
+\begin{verbatim}
+word = "Python"
+for char in word:
+    print(char)
+\end{verbatim}
+
+- Each character in the string is processed individually  
+
+\subsection{Looping Through Dictionaries}
+
+\begin{verbatim}
+student = {"name": "Amina", "marks": 90, "age": 15}
+
+# Loop through keys
+for key in student:
+    print(key, ":", student[key])
+
+# Loop through key-value pairs
+for key, value in student.items():
+    print(key, "->", value)
+\end{verbatim}
+
+- Loops can iterate through keys or key-value pairs for efficient data handling  
+
+\section{Nested Loops}
+
+\begin{verbatim}
+marks = [
+    [80, 70, 90],
+    [75, 85, 65],
+    [90, 95, 100]
+]
+
+for i, student in enumerate(marks):
+    print("Student", i+1, "marks:")
+    for mark in student:
+        print(mark, end=" ")
+    print()
+\end{verbatim}
+
+- Outer loop iterates through students, inner loop through marks  
+- Nested loops are powerful for \textbf{2D data}  
+
+\section{Using \texttt{range()} with Loops}
+
+\begin{verbatim}
+# Print numbers 1 to 5
+for i in range(1, 6):
+    print(i)
+
+# Print even numbers 2 to 10
+for i in range(2, 11, 2):
+    print(i)
+\end{verbatim}
+
+- \texttt{range(start, stop, step)} controls the loop index  
+
+\section{Loop Control Statements}
+
+\begin{itemize}
+    \item \textbf{break} — exit loop early  
+\begin{verbatim}
+for i in range(5):
+    if i == 3:
+        break
+    print(i)  # prints 0 1 2
+\end{verbatim}
+
+    \item \textbf{continue} — skip current iteration  
+\begin{verbatim}
+for i in range(5):
+    if i == 2:
+        continue
+    print(i)  # prints 0 1 3 4
+\end{verbatim}
+\end{itemize}
+
+\section{Mini-Project: Grade Calculator}
+
+Create a program to calculate total and average marks for 3 students:
+
+\begin{verbatim}
+students = [
+    {"name": "Amina", "marks": [80, 70, 90]},
+    {"name": "Rafi", "marks": [75, 85, 65]},
+    {"name": "Sadia", "marks": [90, 95, 100]}
+]
+
+for student in students:
+    total = sum(student["marks"])
+    avg = total / len(student["marks"])
+    print(student["name"], "- Total:", total, "Average:", avg)
+\end{verbatim}
+
+Output:
+
+\begin{verbatim}
+Amina - Total: 240 Average: 80.0
+Rafi - Total: 225 Average: 75.0
+Sadia - Total: 285 Average: 95.0
+\end{verbatim}
+
+\section{Step-by-Step Diagram: Nested Loops with Dictionaries}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start Program};
+\node (outer) [draw, rectangle, fill=yellow!20, below of=start] {Loop Through Outer Collection (Students)};
+\node (inner) [draw, rectangle, fill=orange!20, below of=outer] {Loop Through Inner Collection (Marks)};
+\node (process) [draw, rectangle, fill=orange!20, below of=inner] {Process Each Element (Sum / Average)};
+\node (output) [draw, ellipse, fill=green!20, below of=process] {Display Results};
+\draw[->] (start) -- (outer);
+\draw[->] (outer) -- (inner);
+\draw[->] (inner) -- (process);
+\draw[->] (process) -- (output);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Loops iterate through lists, strings, and dictionaries  
+    \item Nested loops handle multi-dimensional or hierarchical data  
+    \item \texttt{range()} allows index-based loops with steps  
+    \item \texttt{break} and \texttt{continue} control loop flow  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is the purpose of a loop?  
+    \item How do you skip an iteration in a loop?  
+    \item What is a nested loop?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write a loop to print numbers 10 to 1 in reverse.  
+    \item Explain the difference between \texttt{break} and \texttt{continue}.  
+    \item Write a nested loop to print a 3x3 multiplication table.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Ask the user to input 3 students’ names and 3 marks each. Calculate total and average using nested loops.  
+    \item Create a program to print all even numbers between 1 and 20 using \texttt{continue}.  
+    \item Write a program to display each character of a string in reverse order using a loop.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students can use loops with lists, strings, and dictionaries  
+    \item Students can implement nested loops for complex data  
+    \item Students can control loop flow using \texttt{break} and \texttt{continue}  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Demonstrate with real-life data like students’ marks, names, and messages  
+    \item Start with simple loops, then introduce nested loops  
+    \item Show \texttt{break} and \texttt{continue} in context for clarity  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check correct implementation of nested loops  
+    \item Observe correct usage of loop control statements  
+\end{itemize}
+}

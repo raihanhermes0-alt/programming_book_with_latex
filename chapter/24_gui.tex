@@ -1,0 +1,180 @@
+\chapter{Introduction to GUI Programming in Python (Tkinter)}
+
+\section{Introduction: Real-Life Hook}
+
+Imagine this:  
+
+\begin{itemize}
+    \item You open a calculator app on your phone  
+    \item Click buttons to enter numbers and see results instantly  
+    \item Games, quizzes, and chat apps all have interactive windows  
+\end{itemize}
+
+In Python, \textbf{Tkinter} allows you to create \textbf{Graphical User Interfaces (GUIs)} --- windows, buttons, text boxes --- so programs become \textbf{visual and interactive} instead of just text-based.
+
+\section{Concept: What is Tkinter?}
+
+\begin{definition}{Tkinter}
+Tkinter is Python’s standard library for \textbf{creating GUI applications}. It provides widgets like windows, labels, buttons, and entry fields.
+\end{definition}
+
+\section{Creating Your First Window}
+
+\begin{verbatim}
+import tkinter as tk
+
+# Create main window
+window = tk.Tk()
+window.title("My First GUI")
+window.geometry("300x200")  # width x height
+
+# Run the GUI loop
+window.mainloop()
+\end{verbatim}
+
+- \texttt{Tk()} creates the main window  
+- \texttt{title()} sets the window title  
+- \texttt{geometry()} sets window size  
+- \texttt{mainloop()} keeps the window running  
+
+\section{Adding Labels and Buttons}
+
+\begin{verbatim}
+import tkinter as tk
+
+window = tk.Tk()
+window.title("Simple GUI")
+window.geometry("300x200")
+
+# Add a label
+label = tk.Label(window, text="Hello, Tkinter!", font=("Arial", 16))
+label.pack(pady=20)
+
+# Add a button
+def greet():
+    label.config(text="Welcome to GUI Programming!")
+
+button = tk.Button(window, text="Click Me", command=greet)
+button.pack(pady=10)
+
+window.mainloop()
+\end{verbatim}
+
+- \texttt{Label} displays text  
+- \texttt{Button} triggers a function when clicked  
+- \texttt{command} links a function to the button  
+
+\section{Mini-Project: Simple Calculator GUI}
+
+Create a calculator that adds two numbers:
+
+\begin{verbatim}
+import tkinter as tk
+
+def add_numbers():
+    try:
+        num1 = float(entry1.get())
+        num2 = float(entry2.get())
+        result_label.config(text=f"Result: {num1 + num2}")
+    except ValueError:
+        result_label.config(text="Enter valid numbers!")
+
+window = tk.Tk()
+window.title("Calculator")
+window.geometry("300x200")
+
+tk.Label(window, text="Number 1:").pack()
+entry1 = tk.Entry(window)
+entry1.pack()
+
+tk.Label(window, text="Number 2:").pack()
+entry2 = tk.Entry(window)
+entry2.pack()
+
+tk.Button(window, text="Add", command=add_numbers).pack(pady=10)
+
+result_label = tk.Label(window, text="Result:")
+result_label.pack()
+
+window.mainloop()
+\end{verbatim}
+
+- Students learn \textbf{widgets, layout, and event handling}  
+
+\section{Step-by-Step Diagram: GUI Event Flow}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (start) [draw, ellipse, fill=green!20] {Start GUI Program};
+\node (create) [draw, rectangle, fill=yellow!20, below of=start] {Create Window and Widgets};
+\node (event) [draw, diamond, aspect=2, fill=orange!20, below of=create, yshift=-0.5cm] {User Event Occurs (Click/Input)};
+\node (action) [draw, rectangle, fill=yellow!20, below of=event, yshift=-0.5cm] {Execute Associated Function};
+\node (update) [draw, rectangle, fill=orange!20, below of=action] {Update Widgets / Display Results};
+\node (end) [draw, ellipse, fill=green!20, below of=update] {Program Ends};
+\draw[->] (start) -- (create);
+\draw[->] (create) -- (event);
+\draw[->] (event) -- (action);
+\draw[->] (action) -- (update);
+\draw[->] (update) -- (end);
+\end{tikzpicture}
+\end{center}
+
+\section{Key Concepts}
+
+\begin{itemize}
+    \item Tkinter is used to create \textbf{GUI applications}  
+    \item \textbf{Widgets}: Label, Button, Entry, etc.  
+    \item \textbf{Event-driven programming}: functions respond to user actions  
+    \item \texttt{mainloop()} keeps the GUI running  
+    \item GUI programming makes programs \textbf{interactive and user-friendly}  
+\end{itemize}
+
+\section{End-of-Chapter Exercises}
+
+\begin{exercise}{Very Short Questions}
+\begin{enumerate}
+    \item What is Tkinter in Python?  
+    \item Name three common Tkinter widgets.  
+    \item What does \texttt{mainloop()} do?  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Short Answer Questions}
+\begin{enumerate}
+    \item Write a program to create a window with a label “Welcome!”  
+    \item How do you link a button to a function in Tkinter?  
+    \item Explain the difference between \texttt{pack()}, \texttt{grid()}, and \texttt{place()} layout managers.  
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}{Activity-Based Questions}
+\begin{enumerate}
+    \item Create a GUI that takes two numbers and subtracts them when a button is clicked.  
+    \item Create a quiz GUI with a question label, entry box for answer, and a button to check the answer.  
+    \item Design a simple “To-Do List” GUI that allows users to add tasks and display them in a list.  
+\end{enumerate}
+\end{exercise}
+
+\section{Teacher Notes}
+
+\marginnote{
+\textbf{Learning Objectives:}  
+\begin{itemize}
+    \item Students can create windows, labels, buttons, and entry fields  
+    \item Students understand event-driven programming  
+    \item Students can build simple interactive GUI applications  
+\end{itemize}
+
+\textbf{Teaching Tips:}  
+\begin{itemize}
+    \item Start with simple widgets and add functionality gradually  
+    \item Encourage students to experiment with colors, fonts, and layout  
+    \item Relate GUI elements to real-life applications (calculators, games)  
+\end{itemize}
+
+\textbf{Assessment:}  
+\begin{itemize}
+    \item Check GUI creation and widget functionality  
+    \item Observe event handling and interactive response  
+\end{itemize}
+}
